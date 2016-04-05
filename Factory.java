@@ -7,9 +7,9 @@ class Factory
 		t.setPredator(0,'g');
 		t.setPredator(1,'u');
 
-		h.set_batas_umur(99);
-		h.set_DNA('^');
-		h.set_ulang_tahun(1);
+		t.set_batas_umur(99);
+		t.set_DNA('^');
+		t.set_ulang_tahun(1);
 	}
 
 	public static void makeRumput(Tumbuhan t)
@@ -23,9 +23,9 @@ class Factory
 		t.setPredator(6,'h');
 		t.setPredator(7,'y');
 
-		h.set_batas_umur(73);
-		h.set_DNA('!');
-		h.set_ulang_tahun(1);
+		t.set_batas_umur(73);
+		t.set_DNA('!');
+		t.set_ulang_tahun(1);
 	}
 
 	public static void makeGajah(Herbivora h)

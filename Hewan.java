@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class Hewan extends MakhlukHidup implements Movement {
+public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	/**
 	 * An attribute that save the sated rate of the animal
 	 */
@@ -112,7 +112,7 @@ public abstract class Hewan extends MakhlukHidup implements Movement {
 		Target[i] = _target;
 	}
 	
-	void set_Arah(int _arah)
+	public void set_Arah(int _arah)
 	{
 	    arah = _arah;
 	}
@@ -245,6 +245,24 @@ public abstract class Hewan extends MakhlukHidup implements Movement {
 		}
 	}
     
+
+    //Membuat gerakan arah yang ditentukan
+	Point gerak_berarah(Point Awal)
+	{
+	    Point temp = Awal;
+	    switch (get_Arah()) {
+	        case 1 : temp.geser(0,-1); break;
+	        case 2 : temp.geser(1,-1); break;
+	        case 3 : temp.geser(1,0); break;
+	        case 4 : temp.geser(1,1); break;
+	        case 5 : temp.geser(0,1); break;
+	        case 6 : temp.geser(-1,1); break;
+	        case 7 : temp.geser(-1,0); break;
+	        case 8 : temp.geser(-1,-1); break;
+   		 }
+    return temp;
+	}
+
     /**
 	 * A normal procedure member
 	 * A procedure that makes animal move in a direction that has been set
