@@ -222,9 +222,9 @@ public abstract class Hewan extends MakhlukHidup implements Movement {
 	}
 	
 	public int get_Kecepatan()
-{
-    return kecepatan;
-}
+	{
+	    return kecepatan;
+	}
 
 	public int get_Arah()
 	{
