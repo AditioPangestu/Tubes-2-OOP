@@ -35,11 +35,11 @@ public class Hewan extends MakhlukHidup implements Movement {
 	/**
 	 * An attribute that save velocity of movement.
 	 */
-	int kecepatan;
+	private int kecepatan;
     /**
 	 * An attribute that save direction of movement.
 	 */
-    int arah;
+    private int arah;
     
 	/**
 	 * A constructor
@@ -75,6 +75,10 @@ public class Hewan extends MakhlukHidup implements Movement {
 	 */
     public void set_tingkat_kekenyangan(int kenyang){
 		tingkat_kekenyangan = kenyang;
+	}
+
+	public void setKecepatan(int kec){
+		kecepatan = kec;
 	}
 	
     /**
