@@ -1,11 +1,15 @@
 
 
-class Factory()
+class Factory
 {
 	public static void makePohon(Tumbuhan t)
 	{
 		t.setPredator(0,'g');
 		t.setPredator(1,'u');
+
+		h.set_batas_umur(99);
+		h.set_DNA('^');
+		h.set_ulang_tahun(1);
 	}
 
 	public static void makeRumput(Tumbuhan t)
@@ -18,6 +22,10 @@ class Factory()
 		t.setPredator(5,'b');
 		t.setPredator(6,'h');
 		t.setPredator(7,'y');
+
+		h.set_batas_umur(73);
+		h.set_DNA('!');
+		h.set_ulang_tahun(1);
 	}
 
 	public static void makeGajah(Herbivora h)
@@ -30,6 +38,14 @@ class Factory()
 		h.setTarget(0,'!');
 		h.setTarget(1,'^');
 		h.setTarget(2,'u');
+
+		h.set_batas_umur(76);
+		h.set_DNA('g');
+		h.set_ulang_tahun(3);
+		h.set_maks_tingkat_kekenyangan(9);
+		h.set_tingkat_kekenyangan(9);
+		h.setKecepatan(2);
+		h.set_deltaKecepatan(2);
 	}
 
 	public static void makeUnta(Herbivora h)
@@ -43,5 +59,14 @@ class Factory()
 
 		h.setTarget(0,'!');
 		h.setTarget(1,'^');
+
+
+		h.set_batas_umur(80);
+		h.set_DNA('u');
+		h.set_ulang_tahun(2);
+		h.set_maks_tingkat_kekenyangan(9);
+		h.set_tingkat_kekenyangan(9);
+		h.setKecepatan(5);
+		h.set_deltaKecepatan(2);
 	}
 }
