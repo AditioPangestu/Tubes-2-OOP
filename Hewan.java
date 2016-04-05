@@ -1,4 +1,6 @@
-public class Hewan extends MakhlukHidup implements Movement {
+import java.util.Random;
+
+public abstract class Hewan extends MakhlukHidup implements Movement {
 	/**
 	 * An attribute that save the sated rate of the animal
 	 */
@@ -30,7 +32,7 @@ public class Hewan extends MakhlukHidup implements Movement {
     /**
     * Private Attribute yang menyimpan kondisi sedang berburu atau tidak
     */
-    private bool sedangMemburu;
+    private boolean sedangMemburu;
 	
 	/**
 	 * An attribute that save velocity of movement.
@@ -50,8 +52,8 @@ public class Hewan extends MakhlukHidup implements Movement {
 		sedangMemburu = false;
 		memburu = false;
 		ukuran_target = 20;
-		tingkat_kekenyangan = kenyang;
-	    maks_tingkat_kekenyangan = maks;
+		tingkat_kekenyangan = maks_tingkat_kekenyangan;
+	    maks_tingkat_kekenyangan = 0;
 	    Lapar = false; 
 	    Target = new char[ukuran_target];
 	}
@@ -89,11 +91,11 @@ public class Hewan extends MakhlukHidup implements Movement {
     * Prosedur setter untuk atribut Memburu
     * @param M , parameter pertama yang menyimpan kondisi yang akan diubah
     */
-    public void setMemburu(bool M){
+    public void setMemburu(boolean M){
 		memburu = M;
 	}
 
-    public void setSedangMemburu(bool s){
+    public void setSedangMemburu(boolean s){
 		sedangMemburu = s;
 	}
 	
@@ -105,10 +107,16 @@ public class Hewan extends MakhlukHidup implements Movement {
     public void setTarget (int i, char _target){
 		Target[i] = _target;
 	}
-
+	
+	void set_Arah(int _arah)
+	{
+	    arah = _arah;
+	}
+	
 	public void set_Arah_Bebas()
 	{
-	    int _arah = dist(mt);
+	    Random ran = new Random();
+	    int _arah = ran.nextInt(8) + 1;
 	    set_Arah(_arah);
 	}
 	
@@ -176,7 +184,7 @@ public class Hewan extends MakhlukHidup implements Movement {
 		return Lapar;
 	}
 
-    public bool getSedangMemburu(){
+    public boolean getSedangMemburu(){
 		return sedangMemburu;
 	}
     
@@ -201,9 +209,9 @@ public class Hewan extends MakhlukHidup implements Movement {
     * @param _target , parameter pertama yang menyimpan DNA yang akan dicari
     * @return Mengembalikan nilai true jika _target berada pada tabel Target
     */
-    public bool isTarget(char _target){
+    public boolean isTarget(char _target){
 		int i = 0;
-	    bool stop = false;
+	    boolean stop = false;
 	    while ((i < ukuran_target) && (!stop)){
 	        if (Target[i] == _target){
 	            stop = true;
