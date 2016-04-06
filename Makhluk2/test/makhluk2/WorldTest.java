@@ -242,22 +242,8 @@ public class WorldTest {
         int c = 0;
         World instance = new World();
         instance.setCount(c);
+        assertEquals(c, instance.getCount());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCount method, of class World.
-     */
-    @Test
-    public void testGetCount() {
-        System.out.println("getCount");
-        World instance = new World();
-        int expResult = 0;
-        int result = instance.getCount();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -329,26 +315,17 @@ public class WorldTest {
      * Test of fillDaftar method, of class World.
      */
     @Test
-    public void testFillDaftar() {
+    public void testDaftar() {
         System.out.println("fillDaftar");
-        MakhlukHidup n = null;
+        MakhlukHidup n = new Herbivora();
         World instance = new World();
         instance.fillDaftar(n);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of pluck method, of class World.
-     */
-    @Test
-    public void testPluck_MakhlukHidup() {
-        System.out.println("pluck");
-        MakhlukHidup n = null;
-        World instance = new World();
-        instance.pluck(n);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(instance.get_count() > 0)
+        {
+            instance.pluck(n);
+            assertTrue(instance.get_count() == 0);
+        }
     }
 
     /**
@@ -357,11 +334,15 @@ public class WorldTest {
     @Test
     public void testPluck_int() {
         System.out.println("pluck");
-        int i = 0;
+        MakhlukHidup n = new Herbivora();
         World instance = new World();
-        instance.pluck(i);
+        instance.fillDaftar(n);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(instance.get_count() > 0)
+        {
+            instance.pluck(0);
+            assertTrue(instance.get_count() == 0);
+        }
     }
 
     /**
@@ -387,21 +368,6 @@ public class WorldTest {
         int result = instance.get_size();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of get_count method, of class World.
-     */
-    @Test
-    public void testGet_count() {
-        System.out.println("get_count");
-        World instance = new World();
-        int expResult = 0;
-        int result = instance.get_count();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -415,7 +381,6 @@ public class WorldTest {
         Vector<MakhlukHidup> result = instance.get_daftar();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -430,7 +395,6 @@ public class WorldTest {
         MakhlukHidup result = instance.get_daftar(i);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -443,7 +407,7 @@ public class WorldTest {
         World instance = new World();
         instance.set_size(s);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.get_size() == s);
     }
 
     /**
@@ -456,7 +420,7 @@ public class WorldTest {
         World instance = new World();
         instance.set_count(c);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.get_count() == c);
     }
     
 }
