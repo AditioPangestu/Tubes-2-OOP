@@ -23,6 +23,11 @@ public class TumbuhanTest {
     
     @BeforeClass
     public static void setUpClass() {
+        Tumbuhan pohon;
+        Tumbuhan rumput;
+
+        Herbivora unta = new Herbivora();
+        Factory.makeUnta(unta);
     }
     
     @AfterClass
@@ -31,6 +36,11 @@ public class TumbuhanTest {
     
     @Before
     public void setUp() {
+        pohon = new Tumbuhan();
+        Factory.makePohon(pohon);
+
+        rumput = new Tumbuhan();
+        Factory.makeRumput(rumput)
     }
     
     @After
@@ -40,14 +50,45 @@ public class TumbuhanTest {
     /**
      * Test of Reaction method, of class Tumbuhan.
      */
+    //=============================================================
     @Test
-    public void testReaction() {
-        System.out.println("Reaction");
-        MakhlukHidup m = null;
-        Tumbuhan instance = new Tumbuhan();
-        instance.Reaction(m);
+    public void testMakeRumput() {
+        System.out.println("Make Rumput");
+        assert(
+            (rumput.get_batas_umur() == 73) &&
+            (rumput.get_DNA() == '^') &&
+            (rumput.get_ulang_tahun() == 1)
+              )
+    }
+
+    @Test
+    public void testMakePohon() {
+        System.out.println("Make Pohon");
+        assert(
+            (pohon.get_batas_umur() == 99) &&
+            (pohon.get_DNA() == '!') &&
+            (rumput.get_ulang_tahun() == 1)
+              )
+    }
+
+    @Test
+    public void testReactionPohon() {
+        System.out.println("Reaction Pohon");
+        pohon.setPosisi(new Point(2,2));
+        unta.setPosisi(new Point(2,2));
+        pohon.Reaction(unta);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assert(pohon.isMati() == true;)
+    }
+
+    @Test
+    public void testReactionRumput() {
+        System.out.println("Reaction Rumput");
+        rumput.setPosisi(new Point(2,2));
+        unta.setPosisi(new Point(2,2));
+        rumput.Reaction(unta);
+        // TODO review the generated test code and remove the default call to fail.
+        assert(tumput.isMati() == true;)
     }
     
 }
