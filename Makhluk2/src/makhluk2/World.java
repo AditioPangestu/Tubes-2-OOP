@@ -4,6 +4,8 @@ import jcurses.system.*;
 import jcurses.event.*;
 import jcurses.util.*;
 import jcurses.widgets.Window;
+import net.slashie.libjcsi.ConsoleSystemInterface;
+import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
 import java.util.*;
 import java.io.*;
 
@@ -75,7 +77,20 @@ class World  {
 	    }
 	}
 
-
+        public void exam(){
+		ConsoleSystemInterface csi = null;
+		try{
+			csi = new JCursesConsoleInterface();
+		}
+        catch (ExceptionInInitializerError eiie){
+        	System.out.println("Fatal Error Initializing JCurses");
+        	eiie.printStackTrace();
+            System.exit(-1);
+        }
+        csi.cls();
+        csi.print(1,1,"Hello, Hello");
+        csi.print(2,3,"This is printed using the CSI lib, JCurses Implementation!");
+	}
 //=======================================================================================
 	public void updateDisplay()
 	{
