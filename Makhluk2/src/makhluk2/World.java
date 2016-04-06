@@ -16,12 +16,14 @@ class World  {
 	private int panjang;
 	private int lebar;
         ConsoleSystemInterface csi;
+        char Dunia[][] = new char[30][30];
+        
 
 ///Administrator///=========================================================================
 	private int size=10; //banyak makhluk maksimal
 	private int count=0; //banyak makhluk dalam daftar
 	private Vector<MakhlukHidup> daftar = new Vector<MakhlukHidup>(size);//array pointer objek makhluk
-
+        
 ///Konduktor///=============================================================================
     private int lifeState;
     private int Count;
@@ -61,79 +63,23 @@ class World  {
 
 //public//=============================================================================================
         
-///Administrator///======================================================================================
-    public void fillDaftar(MakhlukHidup n)
-	{
-		daftar.add(count,n);
-		count++;
-	}
-
-	public void pluck(MakhlukHidup n)
-	{
-		for(int i=0; i<get_count(); i++)
-		{
-			if(get_daftar(i) == n)
-			{
-				daftar.remove(i);
-				break;
-			}
-		}
-	}
-
-	public void pluck(int i)
-	{
-		daftar.remove(i);
-		count--;
-	}
-
-	public void sinyal()
-	{
-	    for(int i1=0; i1 < get_count(); i1++){
-	        for(int i2=0; i2 < get_count(); i2++)
-	        {
-	            if(i1 != i2)
-	            {
-	                    get_daftar(i1).Reaction(get_daftar(i2));
-	            }
-	        }
-	    }
-	}
-
-	public int get_size()
-	{
-		return size;
-	}
-
-	public int get_count()
-	{
-		return daftar.size();
-	}
-
-	public Vector<MakhlukHidup> get_daftar()
-	{
-		return daftar;
-	}
-
-	public MakhlukHidup get_daftar(int i)
-	{
-		return daftar.get(i);
-	}
-
-	//setter
-	public void set_size(int s)
-	{
-		size = s;
-	}
-
-	public void set_count(int c)
-	{
-		count = c;
-	}
-
-
 //World//==============================================================================================
 	public World() {
-             csi = new WSwingConsoleInterface("Makhluk2");
+            csi = new WSwingConsoleInterface("Makhluk2");
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 30; j++)  {
+                    Dunia[i][j] = '.';
+                }
+            }
+        }
+        
+        public void printDunia() {
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 30; j++)  {
+                    System.out.print(Dunia[i][j]);
+                }
+                System.out.println();
+            }
         }
         
         public void initDisplay() throws ExceptionInInitializerError
@@ -219,10 +165,11 @@ class World  {
 		int x = Pc.getAbsis();
 		int y = Pc.getOrdinat();
                     
+                Dunia[ex_X][ex_Y] = '.';
+                //csi.print(ex_X,ex_Y,".");
+                Dunia[x][y] = display;
                 
-                csi.print(ex_X,ex_Y,".");
-                
-                csi.print(x, y, display+"");
+                //csi.print(x, y, Character.toString(display));
                     
 	}
 
@@ -232,8 +179,8 @@ class World  {
 		int y = Pc.getOrdinat();
                 
                 
-                csi.print(x, y, display+"");
-                
+                csi.print(x, y, Character.toString(display));
+                Dunia[x][y] = display;
 	}
 
 	public void draw(MakhlukHidup m1) throws ExceptionInInitializerError
@@ -491,4 +438,72 @@ class World  {
             }
         }
     }
+    ///Administrator///======================================================================================
+    public void fillDaftar(MakhlukHidup n)
+	{
+		daftar.add(count,n);
+		count++;
+	}
+
+	public void pluck(MakhlukHidup n)
+	{
+		for(int i=0; i<get_count(); i++)
+		{
+			if(get_daftar(i) == n)
+			{
+				daftar.remove(i);
+				break;
+			}
+		}
+	}
+
+	public void pluck(int i)
+	{
+		daftar.remove(i);
+		count--;
+	}
+
+	public void sinyal()
+	{
+	    for(int i1=0; i1 < get_count(); i1++){
+	        for(int i2=0; i2 < get_count(); i2++)
+	        {
+	            if(i1 != i2)
+	            {
+	                    get_daftar(i1).Reaction(get_daftar(i2));
+	            }
+	        }
+	    }
+	}
+
+	public int get_size()
+	{
+		return size;
+	}
+
+	public int get_count()
+	{
+		return daftar.size();
+	}
+
+	public Vector<MakhlukHidup> get_daftar()
+	{
+		return daftar;
+	}
+
+	public MakhlukHidup get_daftar(int i)
+	{
+		return daftar.get(i);
+	}
+
+	//setter
+	public void set_size(int s)
+	{
+		size = s;
+	}
+
+	public void set_count(int c)
+	{
+		count = c;
+	}
 }
