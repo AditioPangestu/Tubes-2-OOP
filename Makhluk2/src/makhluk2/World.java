@@ -1,5 +1,6 @@
 package makhluk2;
 
+import jcurses.*;
 import java.util.*;
 import java.io.*;
 
@@ -20,8 +21,7 @@ class World  {
     
 	private void resetCursor()
 	{
-		//System call set cursor to (0,0) at console
-		
+		moveCursor(0,0);
 	}
 	//=======================================================================================
 	private void moveCursor(int x, int y)
@@ -103,7 +103,13 @@ class World  {
 				if(!get_daftar(i).isMati())
 				{
 					draw(get_daftar(i));
-					Sleep(100);
+					try {
+                                            Thread.sleep(100);
+                                        } catch (InterruptedException e) {
+                                            
+                                        } finally {
+                                            
+                                        }
 				}
 				else
 				{
