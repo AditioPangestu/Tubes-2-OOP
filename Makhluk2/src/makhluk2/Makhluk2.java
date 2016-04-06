@@ -47,6 +47,10 @@ public class Makhluk2 {
         Point P3 = new Point(0,31);
 
         W.initDisplay();
+        W.initDraw(m1);
+        W.initDraw(m2);
+        W.initDraw(m3);
+        W.initDraw(m4);
         while (!W.isGameOver()) {
             try {
                 n.clear();
@@ -61,6 +65,9 @@ public class Makhluk2 {
                     W.aging(W.get_daftar(i));
                 }
                 W.printDunia();
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {} finally {}
             }
         }
         
