@@ -3,8 +3,8 @@ package makhluk2;
 import jcurses.system.*;
 import jcurses.event.*;
 import jcurses.util.*;
-import jcurses.widgets.Window;
-//import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
+import jcurses.widgets.*;
+import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
 import java.util.*;
 import java.io.*;
 
@@ -158,7 +158,7 @@ class World  {
 		moveCursor(x,y);
                 
                 
-                new Toolkit().printString(display+"", x, y, new CharColor((short)1,(short)2));
+                new Toolkit().mvaddstr(display+"", x, y);
 	}
 
 	public void draw(Point Pc, int display)
@@ -238,9 +238,9 @@ class World  {
 			{
 				case '1' :
 				{
-					Manusia m = new Manusia();
+					/*Manusia m = new Manusia();
                                         //HidupPolisi
-					fillDaftar(m);
+					fillDaftar(m);*/
 					break;
 				}
 
@@ -270,9 +270,9 @@ class World  {
 
 				case '5' :
 				{
-					Manusia m = new Manusia();
+					/*Manusia m = new Manusia();
                                         //HidupPemburu
-					fillDaftar(m);
+					fillDaftar(m);*/
 					break;
 				}
 
