@@ -111,12 +111,18 @@ public class KarnivoraTest {
     @Test
     public void testReaction() {
         System.out.println("Reaction");
+        Point posisi = new Point(3,4);
         Herbivora gajah = new Herbivora();
         Factory.makeGajah(gajah);
+        gajah.setPosisi(posisi);
         Karnivora instance = new Karnivora();
-        instance.Reaction(M);
+        Factory.makeHarimau(instance);
+        instance.setPosisi(posisi);
+        instance.set_tingkat_kekenyangan(4);
+        instance.set_maks_tingkat_kekenyangan(8);
+        instance.Reaction(gajah);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.get_tingkat_kekenyangan() == 8);
     }
     
 }
