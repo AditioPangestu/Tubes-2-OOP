@@ -1,15 +1,16 @@
+
 package makhluk2;
 
 import jcurses.system.*;
 import jcurses.event.*;
 import jcurses.util.*;
-import jcurses.widgets.Window;
-import net.slashie.libjcsi.ConsoleSystemInterface;
+import jcurses.widgets.*;
 import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
 import java.util.*;
 import java.io.*;
 
 class World  {
+        
 	private int panjang;
 	private int lebar;
 
@@ -58,7 +59,11 @@ class World  {
 //public//=============================================================================================
 
 //World//==============================================================================================
-	public void initDisplay()
+	public World() {
+            
+        }
+        
+        public void initDisplay()
 	{
 		size = 10;
 		count = 0;
@@ -77,20 +82,6 @@ class World  {
 	    }
 	}
 
-        public void exam(){
-		ConsoleSystemInterface csi = null;
-		try{
-			csi = new JCursesConsoleInterface();
-		}
-        catch (ExceptionInInitializerError eiie){
-        	System.out.println("Fatal Error Initializing JCurses");
-        	eiie.printStackTrace();
-            System.exit(-1);
-        }
-        csi.cls();
-        csi.print(1,1,"Hello, Hello");
-        csi.print(2,3,"This is printed using the CSI lib, JCurses Implementation!");
-	}
 //=======================================================================================
 	public void updateDisplay()
 	{
@@ -152,7 +143,7 @@ class World  {
 		int ex_Y = Px.getOrdinat();
 		int x = Pc.getAbsis();
 		int y = Pc.getOrdinat();
-                CharColor c = new CharColor(jcurses.system.CharColor.GREEN,jcurses.system.CharColor.BLACK);
+                CharColor c = new CharColor((short)1,(short)2);
 		
                 jcurses.system.Toolkit.printString(".", ex_X,ex_Y,c);
 
@@ -166,8 +157,9 @@ class World  {
 		int y = Pc.getOrdinat();
 
 		moveCursor(x,y);
-                CharColor c = new CharColor(CharColor.BLACK,CharColor.GREEN);
-                Toolkit.printString(display+"", x, y, c);
+                
+                
+                new Toolkit().mvaddstr(display+"", x, y);
 	}
 
 	public void draw(Point Pc, int display)
@@ -176,8 +168,7 @@ class World  {
 		int y = Pc.getOrdinat();
 
 		moveCursor(x,y);
-                CharColor c = new CharColor(CharColor.BLACK,CharColor.GREEN);
-		Toolkit.printString(display+"", x, y, c);
+		Toolkit.printString(display+"", x, y, new CharColor((short)1,(short)2));
 	}
 
 	public void draw(MakhlukHidup m1)
@@ -239,7 +230,7 @@ class World  {
 		out.flush();
 		out.close();
 	}
-/*
+
 	public void creation(Point P, char opsi)
 	{
 		if(get_count() < get_size())
@@ -248,14 +239,15 @@ class World  {
 			{
 				case '1' :
 				{
-					Polisi m = new Polisi(P);
-					fillDaftar(m);
+					/*Manusia m = new Manusia();
+                                        //HidupPolisi
+					fillDaftar(m);*/
 					break;
 				}
 
 				case '2' :
 				{
-					Herbivora m = new Herbivora(P);
+					Herbivora m = new Herbivora();
                                         //HidupGajah
 					fillDaftar(m);
 					break;
@@ -263,7 +255,7 @@ class World  {
 
 				case '3' :
 				{
-					Karnivora m = new Karnivora(P);
+					Karnivora m = new Karnivora();
                                         //HidupHyena
 					fillDaftar(m);
 					break;
@@ -271,7 +263,7 @@ class World  {
 
 				case '4' :
 				{
-					Omnivora m = new Omnivora(P);
+					Omnivora m = new Omnivora();
                                         //HidupBeruang
 					fillDaftar(m);
 					break;
@@ -279,14 +271,15 @@ class World  {
 
 				case '5' :
 				{
-					Pemburu m = new Pemburu(P);
-					fillDaftar(m);
+					/*Manusia m = new Manusia();
+                                        //HidupPemburu
+					fillDaftar(m);*/
 					break;
 				}
 
 				case '6' :
 				{
-					Tumbuhan m = new Tumbuhan(P);
+					Tumbuhan m = new Tumbuhan();
                                         //HidupRumput
 					fillDaftar(m);
 					break;
@@ -294,7 +287,7 @@ class World  {
 
 				case '7' :
 				{
-					Tumbuhan m = new Tumbuhan(P);
+					Tumbuhan m = new Tumbuhan();
                                         //HidupPohon
 					fillDaftar(m);
 					break;
@@ -302,7 +295,7 @@ class World  {
 
 				case '8' :
 				{
-					Herbivora m = new Herbivora(P);
+					Herbivora m = new Herbivora();
                                         //HidupBurung
 					fillDaftar(m);
 					break;
@@ -310,7 +303,7 @@ class World  {
 
 				case '9' :
 				{
-					Karnivora m = new Karnivora(P);
+					Karnivora m = new Karnivora();
                                         //HidupHarimau
 					fillDaftar(m);
 					break;
@@ -318,7 +311,7 @@ class World  {
 
 				case '0' :
 				{
-					Omnivora m = new Omnivora(P);
+					Omnivora m = new Omnivora();
                                         //HidupMandril
 					fillDaftar(m);
 					break;
@@ -326,7 +319,7 @@ class World  {
 			}
 		}
 	}
-*/
+
 	public void killAll()
 	{
 		for(int i=0; i<get_count(); i++)
@@ -376,7 +369,7 @@ class World  {
 	    } else{
 	        hidup(m7);
 	    }
-    }
+    }*/
     public void hidup(Manusia m1) {
 		if(lifeState == 1) //cek pause atau tidak
 	    {
@@ -444,7 +437,7 @@ class World  {
 	    {
 
 	    }
-    }*/
+    }
     public void hidup(Herbivora m1) {
     	if(lifeState == 1) //cek pause atau tidak
 	    {
@@ -715,5 +708,4 @@ class World  {
 	{
 		count = c;
 	}
-
 }
