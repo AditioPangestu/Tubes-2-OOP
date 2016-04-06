@@ -74,7 +74,7 @@ public class HewanTest {
         Hewan instance = new HewanImpl();
         instance.set_Kecepatan(kec);
         // TODO review the generated test code and remove the default call to fail.
-        assertTrue(instance.get_Kecepatan() == 18);
+        assertTrue(instance.get_Kecepatan() == 23);
     }
 
     /**
@@ -129,7 +129,7 @@ public class HewanTest {
         instance.setTarget(i, _target);
         
         // TODO review the generated test code and remove the default call to fail.
-        assertTrue(instance.getTarget()[2] == ' ');
+        assertTrue(instance.getTarget()[3] == ' ');
     }
 
     /**
@@ -182,7 +182,7 @@ public class HewanTest {
         Hewan instance = new HewanImpl();
         instance.set_Arah_Menjauh(Awal, Predator);
         // TODO review the generated test code and remove the default call to fail.
-        assertTrue(instance.get_Arah() == 1);
+        assertTrue(instance.get_Arah() == 5);
     }
 
     /**
@@ -197,7 +197,6 @@ public class HewanTest {
         int result = instance.get_tingkat_kekenyangan();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -212,7 +211,6 @@ public class HewanTest {
         int result = instance.get_maks_tingkat_kekenyangan();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -229,7 +227,6 @@ public class HewanTest {
         boolean result = instance.get_lapar();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -243,7 +240,6 @@ public class HewanTest {
         boolean result = instance.getSedangMemburu();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -253,14 +249,16 @@ public class HewanTest {
     public void testGetTarget() {
         System.out.println("getTarget");
         Hewan instance = new HewanImpl();
-        char[] expResult = {'a','b','c'};
+        char[] expResult = new char[20];
+        expResult[0] = 'a';
+        expResult[1] = 'b';
+        expResult[2] = 'c';
         char[] result = instance.getTarget();
         instance.setTarget(0, 'a');
         instance.setTarget(1, 'b');
         instance.setTarget(2, 'c');
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -275,7 +273,6 @@ public class HewanTest {
         instance.setMemburu(expResult);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -291,7 +288,6 @@ public class HewanTest {
         boolean result = instance.isTarget(_target);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -306,7 +302,6 @@ public class HewanTest {
         int result = instance.get_Kecepatan();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -321,7 +316,6 @@ public class HewanTest {
         int result = instance.get_Arah();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -345,12 +339,12 @@ public class HewanTest {
         System.out.println("gerak_berarah");
         Point Awal = new Point (0,0);
         Hewan instance = new HewanImpl();
-        Point expResult = new Point (0,1);
+        Point expResult = new Point (1,0);
         instance.set_Arah(3);
         Point result = instance.gerak_berarah(Awal);
-        assertEquals(expResult, result);
+        assertEquals(expResult.getAbsis(), result.getAbsis());
+        assertEquals(expResult.getOrdinat(), result.getOrdinat());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -362,7 +356,6 @@ public class HewanTest {
         Hewan instance = new HewanImpl();
         instance.gerak_berarah();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     public class HewanImpl extends Hewan {
