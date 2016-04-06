@@ -57,7 +57,7 @@ class Herbivora extends Hewan
      */
     public void prosesMempercepat()
     {
-    	setKecepatan(get_Kecepatan()+get_deltaKecepatan());
+    	set_Kecepatan(get_Kecepatan()+get_deltaKecepatan());
     }
     /**
      *  a procedure that makes herbivore react to its environment
@@ -85,7 +85,7 @@ class Herbivora extends Hewan
 					set_Arah_Bebas();
 				}
 			} else {
-				setKecepatan(get_Kecepatan());
+				set_Kecepatan(get_Kecepatan());
 				set_Arah_Bebas();
 			}
 		}
