@@ -20,10 +20,23 @@ class Herbivora extends Hewan
      */
     public Herbivora()
     {
+        super();
     	set_deltaKecepatan(0);
-		set_percepat(false);
+        set_percepat(false);
     }
     
+    /**
+    * A constructor
+    * Making a herbivore animals in a certain position
+    * @param P Point
+    */
+    public Herbivora(Point P){
+        super();
+        set_deltaKecepatan(0);
+        set_percepat(false);
+        setPosisi(P);
+    }
+
     /**
      *  set the state of the Herbivore to Accelerated or not
      */

@@ -9,12 +9,22 @@ public class Omnivora extends Hewan {
 		super();
 	}
 	
+        /**
+        * A constructor
+        * Making a omnivore animals in a certain position
+        * @param P Point
+        */
+        public Omnivora(Point P){
+            super();
+            setPosisi(P);
+        }
+        
 	/**
 	 * A member procedure
 	 * A process that make the age of the omnivore decrease by one
 	 */
 	public void memuda(){
-		int newUmur = get_umur() - 1;
+            int newUmur = get_umur() - 1;
 	    set_umur(newUmur);
 	}
 	

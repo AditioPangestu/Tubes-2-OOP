@@ -21,6 +21,18 @@ public class Karnivora extends Hewan {
 		melambat = false;
 		deltaKecepatan = 0;
 	}
+        
+        /**
+	 * A constructor
+	 * Making a carnivore animals in a certain position
+         * @param P Point
+	 */
+        public Karnivora(Point P){
+            super();
+            melambat = false;
+            deltaKecepatan = 0;
+            setPosisi(P);
+        }
 
 	/**
 	 * A setter for slowed status
