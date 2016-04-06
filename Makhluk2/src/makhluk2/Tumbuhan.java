@@ -21,7 +21,8 @@ class Tumbuhan extends MakhlukHidup
 	 */
 	public void Reaction(MakhlukHidup m)
 	{
-		if (isPredator(m.get_DNA()) && (getPosisi()==m.getPosisi())) {
+		if (isPredator(m.get_DNA()) && (getPosisi().getAbsis()==m.getPosisi().getAbsis()) 
+			&& (getPosisi().getOrdinat()==m.getPosisi().getOrdinat())){
 		setMati(true);
 		}
 	}
