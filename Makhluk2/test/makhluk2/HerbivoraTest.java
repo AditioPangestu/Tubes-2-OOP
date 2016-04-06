@@ -12,6 +12,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
+
 /**
  *
  * @author Aditio Pangestu
@@ -43,11 +45,11 @@ public class HerbivoraTest {
     @Test
     public void testSet_percepat() {
         System.out.println("set_percepat");
-        boolean cepat = false;
+        boolean cepat = true;
         Herbivora instance = new Herbivora();
         instance.set_percepat(cepat);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.get_percepat());
     }
 
     /**
@@ -60,7 +62,7 @@ public class HerbivoraTest {
         Herbivora instance = new Herbivora();
         instance.set_deltaKecepatan(kec);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.get_deltaKecepatan() == 0);
     }
 
     /**
@@ -98,9 +100,10 @@ public class HerbivoraTest {
     public void testProsesMempercepat() {
         System.out.println("prosesMempercepat");
         Herbivora instance = new Herbivora();
+        Fac
         instance.prosesMempercepat();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue()
     }
 
     /**
