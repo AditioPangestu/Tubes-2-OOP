@@ -6,6 +6,7 @@ import jcurses.event.*;
 import jcurses.util.*;
 import jcurses.widgets.*;
 import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
+import net.slashie.libjcsi.ConsoleSystemInterface;
 import java.util.*;
 import java.io.*;
 
@@ -13,6 +14,7 @@ class World  {
         
 	private int panjang;
 	private int lebar;
+        ConsoleSystemInterface csi = null;
 
 ///Administrator///=========================================================================
 	private int size; //banyak makhluk maksimal
@@ -60,7 +62,7 @@ class World  {
 
 //World//==============================================================================================
 	public World() {
-            
+             
         }
         
         public void initDisplay()
@@ -145,30 +147,25 @@ class World  {
 		int y = Pc.getOrdinat();
                 CharColor c = new CharColor((short)1,(short)2);
 		
-                jcurses.system.Toolkit.printString(".", ex_X,ex_Y,c);
+                csi.print(ex_X,ex_Y,".");
 
-		moveCursor(x,y);
-                jcurses.system.Toolkit.printString(display+"", x, y, c);
+                csi.print(x, y, display+"");
 	}
 
 	public void draw(Point Pc, char display)
 	{
 		int x = Pc.getAbsis();
 		int y = Pc.getOrdinat();
+                try {
+                 csi = new JCursesConsoleInterface();
+                 csi.print(x, y, "b");
+                } catch (ExceptionInInitializerError e) {
 
-		moveCursor(x,y);
+                } 
+                finally {
+                    
+                }
                 
-                
-                new Toolkit().mvaddstr(display+"", x, y);
-	}
-
-	public void draw(Point Pc, int display)
-	{
-		int x = Pc.getAbsis();
-		int y = Pc.getOrdinat();
-
-		moveCursor(x,y);
-		Toolkit.printString(display+"", x, y, new CharColor((short)1,(short)2));
 	}
 
 	public void draw(MakhlukHidup m1)
