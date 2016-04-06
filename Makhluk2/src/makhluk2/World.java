@@ -1,6 +1,9 @@
 package makhluk2;
 
-import jcurses.*;
+import jcurses.system.*;
+import jcurses.event.*;
+import jcurses.util.*;
+import jcurses.widgets.Window;
 import java.util.*;
 import java.io.*;
 
@@ -18,10 +21,10 @@ class World  {
     private int Count;
 
 //private//=======================================================================================
-    
+        
 	private void resetCursor()
 	{
-		moveCursor(0,0);
+            //
 	}
 	//=======================================================================================
 	private void moveCursor(int x, int y)
@@ -114,7 +117,13 @@ class World  {
 				else
 				{
 					endDraw(get_daftar(i));
-					Sleep(3000);
+					try {
+                                            Thread.sleep(3000);
+                                        } catch (InterruptedException e1) {
+                                            
+                                        } finally {
+                                            
+                                        }
 					pluck(i);
 					end = true;
 				}
@@ -128,12 +137,12 @@ class World  {
 		int ex_Y = Px.getOrdinat();
 		int x = Pc.getAbsis();
 		int y = Pc.getOrdinat();
-
-		moveCursor(ex_X, ex_Y);
-		System.out.print('.');
+                CharColor c = new CharColor(jcurses.system.CharColor.GREEN,jcurses.system.CharColor.BLACK);
+		
+                jcurses.system.Toolkit.printString(".", ex_X,ex_Y,c);
 
 		moveCursor(x,y);
-		System.out.print(display);
+                jcurses.system.Toolkit.printString(display+"", x, y, c);
 	}
 
 	public void draw(Point Pc, char display)
@@ -142,7 +151,8 @@ class World  {
 		int y = Pc.getOrdinat();
 
 		moveCursor(x,y);
-		System.out.print(display);
+                CharColor c = new CharColor(CharColor.BLACK,CharColor.GREEN);
+                Toolkit.printString(display+"", x, y, c);
 	}
 
 	public void draw(Point Pc, int display)
@@ -151,7 +161,8 @@ class World  {
 		int y = Pc.getOrdinat();
 
 		moveCursor(x,y);
-		System.out.print(display);
+                CharColor c = new CharColor(CharColor.BLACK,CharColor.GREEN);
+		Toolkit.printString(display+"", x, y, c);
 	}
 
 	public void draw(MakhlukHidup m1)
@@ -161,18 +172,6 @@ class World  {
 		draw(PP, P, m1.get_DNA());
 
 		m1.setPrecPosisi(P);
-	}
-
-	public void draw(MakhlukHidup m1)
-	{
-		if(m1 != null)
-		{
-			Point P  = m1.getPosisi();
-			Point PP = m1.getPrecPosisi();
-			draw(PP, P, m1.get_DNA());
-
-			m1.setPrecPosisi(P);
-		}
 	}
 
 	public void initDraw(MakhlukHidup m1)
@@ -225,7 +224,7 @@ class World  {
 		out.flush();
 		out.close();
 	}
-
+/*
 	public void creation(Point P, char opsi)
 	{
 		if(get_count() < get_size())
@@ -242,6 +241,7 @@ class World  {
 				case '2' :
 				{
 					Herbivora m = new Herbivora(P);
+                                        //HidupGajah
 					fillDaftar(m);
 					break;
 				}
@@ -249,6 +249,7 @@ class World  {
 				case '3' :
 				{
 					Karnivora m = new Karnivora(P);
+                                        //HidupHyena
 					fillDaftar(m);
 					break;
 				}
@@ -256,6 +257,7 @@ class World  {
 				case '4' :
 				{
 					Omnivora m = new Omnivora(P);
+                                        //HidupBeruang
 					fillDaftar(m);
 					break;
 				}
@@ -269,14 +271,16 @@ class World  {
 
 				case '6' :
 				{
-					Rumput m = new Rumput(P);
+					Tumbuhan m = new Tumbuhan(P);
+                                        //HidupRumput
 					fillDaftar(m);
 					break;
 				}
 
 				case '7' :
 				{
-					Pohon m = new Pohon(P);
+					Tumbuhan m = new Tumbuhan(P);
+                                        //HidupPohon
 					fillDaftar(m);
 					break;
 				}
@@ -284,6 +288,7 @@ class World  {
 				case '8' :
 				{
 					Herbivora m = new Herbivora(P);
+                                        //HidupBurung
 					fillDaftar(m);
 					break;
 				}
@@ -291,6 +296,7 @@ class World  {
 				case '9' :
 				{
 					Karnivora m = new Karnivora(P);
+                                        //HidupHarimau
 					fillDaftar(m);
 					break;
 				}
@@ -298,13 +304,14 @@ class World  {
 				case '0' :
 				{
 					Omnivora m = new Omnivora(P);
+                                        //HidupMandril
 					fillDaftar(m);
 					break;
 				}
 			}
 		}
 	}
-
+*/
 	public void killAll()
 	{
 		for(int i=0; i<get_count(); i++)
@@ -334,7 +341,7 @@ class World  {
     public int getCount() {
     	return Count;
     }
-    public void hidup(MakhlukHidup m1) {
+    /*public void hidup(MakhlukHidup m1) {
 	    Manusia m2 = (Manusia) (m1);
 	    Karnivora m3 = (Karnivora) (m1);
 	    Herbivora m4 = (Herbivora) (m1);
@@ -361,25 +368,25 @@ class World  {
 	        if(m1.get_Kecepatan() != 0)
 	        {
 	            if (Count%(10-m1.get_Kecepatan()) == 0){
-	                if(m1.getPosisi() == Point(29,29))//ujung kanan-bawah
+	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
 	                {
 	                    m1.set_Arah(8);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,29))//kiri-bawah
+	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
 	                {
 	                    m1.set_Arah(2);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(29,0))//kanan-atas
+	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
 	                {
 	                    m1.set_Arah(6);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,0))//kiri-atas
+	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
 	                {
 	                    m1.set_Arah(4);
 
@@ -422,32 +429,32 @@ class World  {
 	    {
 
 	    }
-    }
+    }*/
     public void hidup(Herbivora m1) {
     	if(lifeState == 1) //cek pause atau tidak
 	    {
 	        if(m1.get_Kecepatan() != 0)
 	        {
 	            if (Count%(10-m1.get_Kecepatan()) == 0){
-	                if(m1.getPosisi() == Point(29,29))//ujung kanan-bawah
+	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
 	                {
 	                    m1.set_Arah(8);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,29))//kiri-bawah
+	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
 	                {
 	                    m1.set_Arah(2);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(29,0))//kanan-atas
+	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
 	                {
 	                    m1.set_Arah(6);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,0))//kiri-atas
+	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
 	                {
 	                    m1.set_Arah(4);
 
@@ -495,25 +502,25 @@ class World  {
 	        {
 	            if(m1.get_Kecepatan() != 0)
 	            {
-	                if(m1.getPosisi() == Point(29,29))//ujung kanan-bawah
+	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
 	                {
 	                    m1.set_Arah(8);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,29))//kiri-bawah
+	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
 	                {
 	                    m1.set_Arah(2);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(29,0))//kanan-atas
+	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
 	                {
 	                    m1.set_Arah(6);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,0))//kiri-atas
+	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
 	                {
 	                    m1.set_Arah(4);
 
@@ -561,25 +568,25 @@ class World  {
 	        if (Count%(10-m1.get_Kecepatan()) == 0){
 	            if(m1.get_Kecepatan() != 0)
 	            {
-	                if(m1.getPosisi() == Point(29,29))//ujung kanan-bawah
+	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
 	                {
 	                    m1.set_Arah(8);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,29))//kiri-bawah
+	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
 	                {
 	                    m1.set_Arah(2);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(29,0))//kanan-atas
+	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
 	                {
 	                    m1.set_Arah(6);
 
 	                    m1.gerak_berarah();
 	                }
-	                else if(m1.getPosisi() == Point(0,0))//kiri-atas
+	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
 	                {
 	                    m1.set_Arah(4);
 
@@ -628,7 +635,7 @@ class World  {
 ///Administrator///======================================================================================
     public void fillDaftar(MakhlukHidup n)
 	{
-		daftar.push_back(n);
+		daftar.add(count,n);
 		count++;
 	}
 
@@ -638,7 +645,7 @@ class World  {
 		{
 			if(get_daftar(i) == n)
 			{
-				daftar.erase(daftar.begin()+i);
+				daftar.remove(i);
 				break;
 			}
 		}
@@ -646,7 +653,7 @@ class World  {
 
 	public void pluck(int i)
 	{
-		daftar.erase(daftar.begin()+i);
+		daftar.remove(i);
 		count--;
 	}
 
@@ -680,7 +687,7 @@ class World  {
 
 	public MakhlukHidup get_daftar(int i)
 	{
-		return daftar.at(i);
+		return daftar.get(i);
 	}
 
 	//setter
@@ -693,4 +700,5 @@ class World  {
 	{
 		count = c;
 	}
+
 }
