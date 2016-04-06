@@ -69,4 +69,94 @@ class Factory
 		h.set_Kecepatan(5);
 		h.set_deltaKecepatan(2);
 	}
+
+	public static void makeHarimau(Karnivora k)
+	{
+		k.setPredator(0,'H');
+	    k.setPredator(1,'!');
+
+	    k.setTarget(0,'u');
+	    k.setTarget(1,'g');
+	    k.setTarget(2,'b');
+	    k.setTarget(3,'m');
+	    k.setTarget(4,'y');
+	    k.setTarget(5,'^');
+	    k.setTarget(6,'C');
+
+	    k.set_batas_umur(99);
+		k.set_DNA('h');
+		k.set_ulang_tahun(2);
+		k.set_maks_tingkat_kekenyangan(70);
+		k.set_tingkat_kekenyangan(70);
+		k.set_Kecepatan(3);
+		k.setDeltaKecepatan(2);
+		k.set_Arah(1);
+	}
+
+	public static void makeHyena(Karnivora k)
+	{
+		k.setPredator(0,'!');
+	    k.setPredator(1,'h');
+	    k.setPredator(2,'H');
+
+	    k.setTarget(0,'u');
+	    k.setTarget(1,'g');
+	    k.setTarget(2,'b');
+	    k.setTarget(3,'m');
+	    k.setTarget(4,'^');
+	    k.setTarget(5,'C');
+
+	    k.set_batas_umur(70);
+		k.set_DNA('y');
+		k.set_ulang_tahun(3);
+		k.set_maks_tingkat_kekenyangan(90);
+		k.set_tingkat_kekenyangan(90);
+		k.set_Kecepatan(4);
+		k.setDeltaKecepatan(3);
+		k.set_Arah(1);
+	}
+
+	public static void makeBeruang(Omnivora o)
+	{
+		o.setPredator(0,'h');
+	    o.setPredator(1,'y');
+	    o.setPredator(2,'H');
+
+	    o.setTarget(0,'u');
+	    o.setTarget(1,'g');
+	    o.setTarget(2,'^');
+	    o.setTarget(3,'!');
+	    o.setTarget(4,'m');
+	    o.setTarget(5,'C');
+
+	    o.set_batas_umur(39);
+		o.set_DNA('b');
+		o.set_ulang_tahun(5);
+		o.set_maks_tingkat_kekenyangan(70);
+		o.set_tingkat_kekenyangan(70);
+		o.set_Kecepatan(4);
+		o.set_Arah(1);
+	}
+
+	public static void makeMandril(Omnivora o)
+	{
+		o.setPredator(0,'h');
+	    o.setPredator(1,'y');
+	    o.setPredator(2,'H');
+	    o.setPredator(3,'b');
+
+	    o.setTarget(0,'u');
+	    o.setTarget(1,'g');
+	    o.setTarget(2,'^');
+	    o.setTarget(3,'!');
+	    o.setTarget(4,'C');
+
+	    o.set_batas_umur(87);
+		o.set_DNA('b');
+		o.set_ulang_tahun(4);
+		o.set_maks_tingkat_kekenyangan(25);
+		o.set_tingkat_kekenyangan(25);
+		o.set_Kecepatan(3);
+		o.set_Arah(1);
+	}
 }
