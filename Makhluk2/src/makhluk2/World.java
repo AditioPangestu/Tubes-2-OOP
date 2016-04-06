@@ -18,9 +18,9 @@ class World  {
         ConsoleSystemInterface csi;
 
 ///Administrator///=========================================================================
-	private int size; //banyak makhluk maksimal
-	private int count; //banyak makhluk dalam daftar
-	private Vector<MakhlukHidup> daftar;//array pointer objek makhluk
+	private int size=10; //banyak makhluk maksimal
+	private int count=0; //banyak makhluk dalam daftar
+	private Vector<MakhlukHidup> daftar = new Vector<MakhlukHidup>(size);//array pointer objek makhluk
 
 ///Konduktor///=============================================================================
     private int lifeState;
@@ -406,7 +406,7 @@ class World  {
     }
     public void aging(MakhlukHidup m1) {
         if((lifeState == 1) && (Count%10 == 0)) {
-            ((Manusia)m1).menua();
+            m1.menua();
         }
     }
     public void pause() {
@@ -425,63 +425,63 @@ class World  {
         if (!(m1 instanceof Tumbuhan)) {
             if(lifeState == 1) //cek pause atau tidak
             {
-                if(((Manusia)m1).get_Kecepatan() != 0)
+                if(((Hewan)m1).get_Kecepatan() != 0)
                 {
-                    if (Count%(10-((Manusia)m1).get_Kecepatan()) == 0){
-                        if(((Manusia)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
+                    if (Count%(10-((Hewan)m1).get_Kecepatan()) == 0){
+                        if(((Hewan)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
                         {
-                            ((Manusia)m1).set_Arah(8);
+                            ((Hewan)m1).set_Arah(8);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi() == new Point(0,29))//kiri-bawah
+                        else if(((Hewan)m1).getPosisi() == new Point(0,29))//kiri-bawah
                         {
-                            ((Manusia)m1).set_Arah(2);
+                            ((Hewan)m1).set_Arah(2);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi() == new Point(29,0))//kanan-atas
+                        else if(((Hewan)m1).getPosisi() == new Point(29,0))//kanan-atas
                         {
-                            ((Manusia)m1).set_Arah(6);
+                            ((Hewan)m1).set_Arah(6);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi() == new Point(0,0))//kiri-atas
+                        else if(((Hewan)m1).getPosisi() == new Point(0,0))//kiri-atas
                         {
-                            ((Manusia)m1).set_Arah(4);
+                            ((Hewan)m1).set_Arah(4);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi().getAbsis() >= 29)//kanan
+                        else if(((Hewan)m1).getPosisi().getAbsis() >= 29)//kanan
                         {
-                            ((Manusia)m1).set_Arah(7);
+                            ((Hewan)m1).set_Arah(7);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi().getAbsis() == 0)//kiri
+                        else if(((Hewan)m1).getPosisi().getAbsis() == 0)//kiri
                         {
-                            ((Manusia)m1).set_Arah(3);
+                            ((Hewan)m1).set_Arah(3);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi().getOrdinat() >= 29)
+                        else if(((Hewan)m1).getPosisi().getOrdinat() >= 29)
                         {
-                            ((Manusia)m1).set_Arah(1);
+                            ((Hewan)m1).set_Arah(1);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Manusia)m1).getPosisi().getOrdinat() == 0)
+                        else if(((Hewan)m1).getPosisi().getOrdinat() == 0)
                         {
-                            ((Manusia)m1).set_Arah(5);
+                            ((Hewan)m1).set_Arah(5);
 
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
                         else
                         {
-                            ((Manusia)m1).gerak_berarah();
+                            ((Hewan)m1).gerak_berarah();
                         }
 
-                        ((Manusia)m1).setSedangMemburu(false);
+                        ((Hewan)m1).setSedangMemburu(false);
                     }
                 }
             }
