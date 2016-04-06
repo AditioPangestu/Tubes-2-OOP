@@ -79,7 +79,7 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 		tingkat_kekenyangan = kenyang;
 	}
 
-	public void setKecepatan(int kec){
+	public void set_Kecepatan(int kec){
 		kecepatan = kec;
 	}
 	
