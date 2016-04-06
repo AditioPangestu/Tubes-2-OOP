@@ -5,6 +5,7 @@ import jcurses.system.*;
 import jcurses.event.*;
 import jcurses.util.*;
 import jcurses.widgets.*;
+import net.slashie.libjcsi.wswing.WSwingConsoleInterface;
 import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
 import net.slashie.libjcsi.ConsoleSystemInterface;
 import java.util.*;
@@ -14,7 +15,7 @@ class World  {
         
 	private int panjang;
 	private int lebar;
-        ConsoleSystemInterface csi = null;
+        ConsoleSystemInterface csi;
 
 ///Administrator///=========================================================================
 	private int size; //banyak makhluk maksimal
@@ -59,584 +60,7 @@ class World  {
 	}
 
 //public//=============================================================================================
-
-//World//==============================================================================================
-	public World() {
-             
-        }
         
-        public void initDisplay()
-	{
-		size = 10;
-		count = 0;
-		lifeState = 1;
-		Count = 0;
-		cursorSwitch(false);
-		resetCursor();
-	    clear();
-	    for(int i=0; i<30; ++i)
-	    {
-	        for(int j=0; j<30; ++j)
-	        {
-	            System.out.print('.');
-	        }
-	        System.out.println();
-	    }
-	}
-
-//=======================================================================================
-	public void updateDisplay()
-	{
-	    for(int i=0; i<get_count(); ++i)
-	    {
-	        if(get_daftar(i) != null)
-	        {
-	            if(!get_daftar(i).isMati())
-	            {
-	                draw(get_daftar(i));
-	            }
-	            else
-	            {
-	                endDraw(get_daftar(i));
-	                pluck(i);
-	            }
-	        }
-	    }
-	}
-
-	public void updateMakhluk(int i)
-	{
-		boolean end = false;
-		while(!end)
-		{
-			if(get_daftar(i) != null)
-			{
-				if(!get_daftar(i).isMati())
-				{
-					draw(get_daftar(i));
-					try {
-                                            Thread.sleep(100);
-                                        } catch (InterruptedException e) {
-                                            
-                                        } finally {
-                                            
-                                        }
-				}
-				else
-				{
-					endDraw(get_daftar(i));
-					try {
-                                            Thread.sleep(3000);
-                                        } catch (InterruptedException e1) {
-                                            
-                                        } finally {
-                                            
-                                        }
-					pluck(i);
-					end = true;
-				}
-			}
-		}
-	}
-
-	public void draw(Point Px, Point Pc, char display)
-	{
-		int ex_X = Px.getAbsis();
-		int ex_Y = Px.getOrdinat();
-		int x = Pc.getAbsis();
-		int y = Pc.getOrdinat();
-                CharColor c = new CharColor((short)1,(short)2);
-		
-                csi.print(ex_X,ex_Y,".");
-
-                csi.print(x, y, display+"");
-	}
-
-	public void draw(Point Pc, char display)
-	{
-		int x = Pc.getAbsis();
-		int y = Pc.getOrdinat();
-                try {
-                 csi = new JCursesConsoleInterface();
-                 csi.print(x, y, "b");
-                } catch (ExceptionInInitializerError e) {
-
-                } 
-                finally {
-                    
-                }
-                
-	}
-
-	public void draw(MakhlukHidup m1)
-	{
-		Point P  = m1.getPosisi();
-		Point PP = m1.getPrecPosisi();
-		draw(PP, P, m1.get_DNA());
-
-		m1.setPrecPosisi(P);
-	}
-
-	public void initDraw(MakhlukHidup m1)
-	{
-		Point P = m1.getPosisi();
-		draw(P, m1.get_DNA());
-
-		m1.setPrecPosisi(P);
-	}
-
-	public void endDraw(MakhlukHidup m1)
-	{
-		draw(m1.getPrecPosisi(), '.');
-		draw(m1.getPosisi(), '_');
-	}
-
-	public boolean isGameOver()
-	{
-
-		if(get_count() <= 0) return true;
-		else				 return false;
-
-	}
-
-	public void tangkapLayar() throws IOException
-	{
-		boolean found = false;
-		//ofstream out("out.txt");
-		File outfile = new File("out.txt");
-		outfile.createNewFile();
-		FileWriter out = new FileWriter(outfile);
-
-		for(int i=0; i<30; ++i)
-		{
-			for(int j=0; j<30; ++j)
-			{
-				found = false;
-				for(int k=0; k<get_size(); k++)
-				{
-					if((get_daftar(k) != null) && (get_daftar(k).getPosisi().getAbsis()==j) && (get_daftar(k).getPosisi().getOrdinat()==i))
-					{
-						out.write(get_daftar(k).get_DNA()+"");
-						found = true;
-					}
-				}
-				if(!found) out.write(".");
-			}
-			out.write("\n");
-		}
-		out.flush();
-		out.close();
-	}
-
-	public void creation(Point P, char opsi)
-	{
-		if(get_count() < get_size())
-		{
-			switch (opsi)
-			{
-				case '1' :
-				{
-					/*Manusia m = new Manusia();
-                                        //HidupPolisi
-					fillDaftar(m);*/
-					break;
-				}
-
-				case '2' :
-				{
-					Herbivora m = new Herbivora();
-                                        //HidupGajah
-					fillDaftar(m);
-					break;
-				}
-
-				case '3' :
-				{
-					Karnivora m = new Karnivora();
-                                        //HidupHyena
-					fillDaftar(m);
-					break;
-				}
-
-				case '4' :
-				{
-					Omnivora m = new Omnivora();
-                                        //HidupBeruang
-					fillDaftar(m);
-					break;
-				}
-
-				case '5' :
-				{
-					/*Manusia m = new Manusia();
-                                        //HidupPemburu
-					fillDaftar(m);*/
-					break;
-				}
-
-				case '6' :
-				{
-					Tumbuhan m = new Tumbuhan();
-                                        //HidupRumput
-					fillDaftar(m);
-					break;
-				}
-
-				case '7' :
-				{
-					Tumbuhan m = new Tumbuhan();
-                                        //HidupPohon
-					fillDaftar(m);
-					break;
-				}
-
-				case '8' :
-				{
-					Herbivora m = new Herbivora();
-                                        //HidupBurung
-					fillDaftar(m);
-					break;
-				}
-
-				case '9' :
-				{
-					Karnivora m = new Karnivora();
-                                        //HidupHarimau
-					fillDaftar(m);
-					break;
-				}
-
-				case '0' :
-				{
-					Omnivora m = new Omnivora();
-                                        //HidupMandril
-					fillDaftar(m);
-					break;
-				}
-			}
-		}
-	}
-
-	public void killAll()
-	{
-		for(int i=0; i<get_count(); i++)
-		{
-			if(get_daftar(i) != null)
-			{
-				get_daftar(i).setMati(true);
-			}
-		}
-	}
-
-///Konduktor///=======================================================================
-    public void aging(MakhlukHidup m1) {
-	    if((lifeState == 1) && (Count%10 == 0)) {
-	        m1.menua();
-	    }
-    }
-    public void pause() {
-    	lifeState = 0;
-    }
-    public void resume() {
-    	lifeState = 1;
-    }
-    public void setCount(int c) {
-    	Count = c;
-    }
-    public int getCount() {
-    	return Count;
-    }
-    /*public void hidup(MakhlukHidup m1) {
-	    Manusia m2 = (Manusia) (m1);
-	    Karnivora m3 = (Karnivora) (m1);
-	    Herbivora m4 = (Herbivora) (m1);
-	    Omnivora m5 = (Omnivora) (m1);
-	    Herbivora m6 = (Herbivora) (m1);
-	    Tumbuhan m7 = (Tumbuhan) (m1);
-	    if (m2!=0){
-	        hidup(m2);
-	    } else if (m3!=0){
-	        hidup(m3);
-	    } else if (m4!=0){
-	        hidup(m4);
-	    } else if (m5!=0){
-	        hidup(m5);
-	    } else if (m6!=0){
-	        hidup(m6);
-	    } else{
-	        hidup(m7);
-	    }
-    }*/
-    public void hidup(Manusia m1) {
-		if(lifeState == 1) //cek pause atau tidak
-	    {
-	        if(m1.get_Kecepatan() != 0)
-	        {
-	            if (Count%(10-m1.get_Kecepatan()) == 0){
-	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
-	                {
-	                    m1.set_Arah(8);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
-	                {
-	                    m1.set_Arah(2);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
-	                {
-	                    m1.set_Arah(6);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
-	                {
-	                    m1.set_Arah(4);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() >= 29)//kanan
-	                {
-	                    m1.set_Arah(7);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() == 0)//kiri
-	                {
-	                    m1.set_Arah(3);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() >= 29)
-	                {
-	                    m1.set_Arah(1);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() == 0)
-	                {
-	                    m1.set_Arah(5);
-
-	                    m1.gerak_berarah();
-	                }
-	                else
-	                {
-	                    m1.gerak_berarah();
-	                }
-
-	                m1.setSedangMemburu(false);
-	            }
-	        }
-	    }
-	    else if(lifeState == 0)
-	    {
-
-	    }
-    }
-    public void hidup(Herbivora m1) {
-    	if(lifeState == 1) //cek pause atau tidak
-	    {
-	        if(m1.get_Kecepatan() != 0)
-	        {
-	            if (Count%(10-m1.get_Kecepatan()) == 0){
-	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
-	                {
-	                    m1.set_Arah(8);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
-	                {
-	                    m1.set_Arah(2);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
-	                {
-	                    m1.set_Arah(6);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
-	                {
-	                    m1.set_Arah(4);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() >= 29)//kanan
-	                {
-	                    m1.set_Arah(7);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() == 0)//kiri
-	                {
-	                    m1.set_Arah(3);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() >= 29)
-	                {
-	                    m1.set_Arah(1);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() == 0)
-	                {
-	                    m1.set_Arah(5);
-
-	                    m1.gerak_berarah();
-	                }
-	                else
-	                {
-	                    m1.gerak_berarah();
-	                }
-	            }
-	        }
-	    }
-	    else if(lifeState == 0)
-	    {
-
-	    }
-    }
-    public void hidup(Karnivora m1) {
-	    	if (Count%(10-m1.get_Kecepatan()) == 0){
-	        if(lifeState == 1) //cek pause atau tidak
-	        {
-	            if(m1.get_Kecepatan() != 0)
-	            {
-	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
-	                {
-	                    m1.set_Arah(8);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
-	                {
-	                    m1.set_Arah(2);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
-	                {
-	                    m1.set_Arah(6);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
-	                {
-	                    m1.set_Arah(4);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() >= 29)//kanan
-	                {
-	                    m1.set_Arah(7);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() == 0)//kiri
-	                {
-	                    m1.set_Arah(3);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() >= 29)
-	                {
-	                    m1.set_Arah(1);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() == 0)
-	                {
-	                    m1.set_Arah(5);
-
-	                    m1.gerak_berarah();
-	                }
-	                else
-	                {
-	                    m1.gerak_berarah();
-	                }
-	            }
-	        }
-	    }
-	    else if(lifeState == 0)
-	    {
-
-	    }
-    }
-    public void hidup(Omnivora m1) {
-    	if(lifeState == 1) //cek pause atau tidak
-	    {
-	        if (Count%(10-m1.get_Kecepatan()) == 0){
-	            if(m1.get_Kecepatan() != 0)
-	            {
-	                if(m1.getPosisi() == new Point(29,29))//ujung kanan-bawah
-	                {
-	                    m1.set_Arah(8);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,29))//kiri-bawah
-	                {
-	                    m1.set_Arah(2);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(29,0))//kanan-atas
-	                {
-	                    m1.set_Arah(6);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi() == new Point(0,0))//kiri-atas
-	                {
-	                    m1.set_Arah(4);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() >= 29)//kanan
-	                {
-	                    m1.set_Arah(7);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getAbsis() == 0)//kiri
-	                {
-	                    m1.set_Arah(3);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() >= 29)
-	                {
-	                    m1.set_Arah(1);
-
-	                    m1.gerak_berarah();
-	                }
-	                else if(m1.getPosisi().getOrdinat() == 0)
-	                {
-	                    m1.set_Arah(5);
-
-	                    m1.gerak_berarah();
-	                }
-	                else
-	                {
-	                    m1.gerak_berarah();
-	                }
-	            }
-	        }
-	    }
-	    else if(lifeState == 0)
-	    {
-
-	    }
-    }
-    public void hidup(Tumbuhan t1) {
-
-    }
-
 ///Administrator///======================================================================================
     public void fillDaftar(MakhlukHidup n)
 	{
@@ -705,4 +129,381 @@ class World  {
 	{
 		count = c;
 	}
+
+
+//World//==============================================================================================
+	public World() {
+             csi = new WSwingConsoleInterface("Makhluk2");
+        }
+        
+        public void initDisplay() throws ExceptionInInitializerError
+	{
+            csi.cls();
+            size = 10;
+            count = 0;
+            lifeState = 1;
+            Count = 0;
+            resetCursor();
+	    for(int i=0; i<30; ++i)
+	    {
+	        for(int j=0; j<30; ++j)
+	        {
+	            System.out.print('.');
+                    csi.print(i, j, Character.toString('.'));
+	        }
+	        System.out.println();
+                csi.print(i,29, "\n");
+	    }
+	}
+        
+        
+//=======================================================================================
+	public void updateDisplay() throws ExceptionInInitializerError
+	{
+	    for(int i=0; i<get_count(); ++i)
+	    {
+	        if(get_daftar(i) != null)
+	        {
+	            if(!get_daftar(i).isMati())
+	            {
+	                draw(get_daftar(i));
+	            }
+	            else
+	            {
+	                endDraw(get_daftar(i));
+	                pluck(i);
+	            }
+	        }
+	    }
+	}
+
+	public void updateMakhluk(int i) throws ExceptionInInitializerError
+	{
+		boolean end = false;
+		while(!end)
+		{
+			if(get_daftar(i) != null)
+			{
+				if(!get_daftar(i).isMati())
+				{
+					draw(get_daftar(i));
+					try {
+                                            Thread.sleep(100);
+                                        } catch (InterruptedException e) {
+                                            
+                                        } finally {
+                                            
+                                        }
+				}
+				else
+				{
+					endDraw(get_daftar(i));
+					try {
+                                            Thread.sleep(3000);
+                                        } catch (InterruptedException e1) {
+                                            
+                                        } finally {
+                                            
+                                        }
+					pluck(i);
+					end = true;
+				}
+			}
+		}
+	}
+
+	public void draw(Point Px, Point Pc, char display) throws ExceptionInInitializerError
+	{
+		int ex_X = Px.getAbsis();
+		int ex_Y = Px.getOrdinat();
+		int x = Pc.getAbsis();
+		int y = Pc.getOrdinat();
+                    
+                
+                csi.print(ex_X,ex_Y,".");
+                
+                csi.print(x, y, display+"");
+                    
+	}
+
+	public void draw(Point Pc, char display) throws ExceptionInInitializerError
+	{
+		int x = Pc.getAbsis();
+		int y = Pc.getOrdinat();
+                
+                
+                csi.print(x, y, display+"");
+                
+	}
+
+	public void draw(MakhlukHidup m1) throws ExceptionInInitializerError
+	{
+		Point P  = m1.getPosisi();
+		Point PP = m1.getPrecPosisi();
+		draw(PP, P, m1.get_DNA());
+
+		m1.setPrecPosisi(P);
+	}
+
+	public void initDraw(MakhlukHidup m1) throws ExceptionInInitializerError
+	{
+		Point P = m1.getPosisi();
+		draw(P, m1.get_DNA());
+
+		m1.setPrecPosisi(P);
+	}
+
+	public void endDraw(MakhlukHidup m1) throws ExceptionInInitializerError
+	{
+		draw(m1.getPrecPosisi(), '.');
+		draw(m1.getPosisi(), '_');
+	}
+
+	public boolean isGameOver()
+	{
+
+		if(get_count() <= 0) return true;
+		else				 return false;
+
+	}
+
+	public void tangkapLayar() throws IOException, NullPointerException
+	{
+		boolean found;
+		//ofstream out("out.txt");
+		File outfile = new File("out.txt");
+		outfile.createNewFile();
+		FileWriter out = new FileWriter(outfile);
+
+		for(int i=0; i<30; ++i)
+		{
+			for(int j=0; j<30; ++j)
+			{
+				found = false;
+				if (!daftar.isEmpty()) {
+                                    for(int k=0; k<get_size(); k++)
+                                    {
+                                            if((get_daftar(k) != null) && (get_daftar(k).getPosisi().getAbsis()==j) && (get_daftar(k).getPosisi().getOrdinat()==i))
+                                            {
+                                                    out.write(get_daftar(k).get_DNA()+"");
+                                                    found = true;
+                                            }
+                                    }
+                                    if(!found) out.write(".");
+                                } else {
+                                    out.write(".");
+                                }
+			}
+			out.write("\n");
+		}
+		out.flush();
+		out.close();
+	}
+
+	public void creation(Point P, char opsi)
+	{
+		if(get_count() < get_size())
+		{
+			switch (opsi)
+			{
+				case '1' :
+				{
+					/*Manusia m = new Manusia();
+                                        //HidupPolisi
+					fillDaftar(m);*/
+					break;
+				}
+
+				case '2' :
+				{
+					Herbivora m = new Herbivora();
+                                        Factory.makeGajah(m);
+					fillDaftar(m);
+					break;
+				}
+
+				case '3' :
+				{
+					Karnivora m = new Karnivora();
+                                        //HidupHyena
+					fillDaftar(m);
+					break;
+				}
+
+				case '4' :
+				{
+					Omnivora m = new Omnivora();
+                                        //HidupBeruang
+					fillDaftar(m);
+					break;
+				}
+
+				case '5' :
+				{
+					/*Manusia m = new Manusia();
+                                        //HidupPemburu
+					fillDaftar(m);*/
+					break;
+				}
+
+				case '6' :
+				{
+					Tumbuhan m = new Tumbuhan();
+                                        Factory.makeRumput(m);
+					fillDaftar(m);
+					break;
+				}
+
+				case '7' :
+				{
+					Tumbuhan m = new Tumbuhan();
+                                        Factory.makePohon(m);
+					fillDaftar(m);
+					break;
+				}
+
+				case '8' :
+				{
+					Herbivora m = new Herbivora();
+                                        Factory.makeUnta(m);
+					fillDaftar(m);
+					break;
+				}
+
+				case '9' :
+				{
+					Karnivora m = new Karnivora();
+                                        //HidupHarimau
+					fillDaftar(m);
+					break;
+				}
+
+				case '0' :
+				{
+					Omnivora m = new Omnivora();
+                                        //HidupMandril
+					fillDaftar(m);
+					break;
+				}
+			}
+		}
+	}
+
+	public void killAll()
+	{
+		for(int i=0; i<get_count(); i++)
+		{
+			if(get_daftar(i) != null)
+			{
+				get_daftar(i).setMati(true);
+			}
+		}
+	}
+
+///Konduktor///=======================================================================
+    public void setLifeState(int ls) {
+        lifeState = ls;
+    }
+    public int getLifeState() {
+        return lifeState;
+    }
+    public void aging(MakhlukHidup m1) {
+        if((lifeState == 1) && (Count%10 == 0)) {
+            ((Manusia)m1).menua();
+        }
+    }
+    public void pause() {
+    	lifeState = 0;
+    }
+    public void resume() {
+    	lifeState = 1;
+    }
+    public void setCount(int c) {
+    	Count = c;
+    }
+    public int getCount() {
+    	return Count;
+    }
+    public void hidup(MakhlukHidup m1) {
+	    if (m1 instanceof Manusia) {
+                hidup((Manusia)m1);
+            } else if (m1 instanceof Karnivora) {
+                hidup((Karnivora)m1);
+            } else if (m1 instanceof Herbivora) {
+                hidup((Herbivora)m1);
+            } else if (m1 instanceof Omnivora) {
+                hidup((Omnivora)m1);
+            } else if (m1 instanceof Tumbuhan) {
+                hidup((Tumbuhan)m1);
+            }
+            
+            if (!(m1 instanceof Tumbuhan)) {
+                if(lifeState == 1) //cek pause atau tidak
+                {
+                    if(((Manusia)m1).get_Kecepatan() != 0)
+                    {
+                        if (Count%(10-((Manusia)m1).get_Kecepatan()) == 0){
+                            if(((Manusia)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
+                            {
+                                ((Manusia)m1).set_Arah(8);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi() == new Point(0,29))//kiri-bawah
+                            {
+                                ((Manusia)m1).set_Arah(2);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi() == new Point(29,0))//kanan-atas
+                            {
+                                ((Manusia)m1).set_Arah(6);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi() == new Point(0,0))//kiri-atas
+                            {
+                                ((Manusia)m1).set_Arah(4);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi().getAbsis() >= 29)//kanan
+                            {
+                                ((Manusia)m1).set_Arah(7);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi().getAbsis() == 0)//kiri
+                            {
+                                ((Manusia)m1).set_Arah(3);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi().getOrdinat() >= 29)
+                            {
+                                ((Manusia)m1).set_Arah(1);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else if(((Manusia)m1).getPosisi().getOrdinat() == 0)
+                            {
+                                ((Manusia)m1).set_Arah(5);
+
+                                ((Manusia)m1).gerak_berarah();
+                            }
+                            else
+                            {
+                                ((Manusia)m1).gerak_berarah();
+                            }
+
+                            ((Manusia)m1).setSedangMemburu(false);
+                        }
+                    }
+                }
+                else if(lifeState == 0)
+                {
+
+                }
+            }
+    }
 }
