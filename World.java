@@ -189,11 +189,13 @@ class World  {
 
 	}
 
-	public void tangkapLayar()
+	public void tangkapLayar() throws IOException
 	{
 		boolean found = false;
 		//ofstream out("out.txt");
-
+		File outfile = new File("out.txt");
+		outfile.createNewFile();
+		FileWriter out = new FileWriter(outfile);
 
 		for(int i=0; i<30; ++i)
 		{
@@ -204,14 +206,16 @@ class World  {
 				{
 					if((get_daftar(k) != null) && (get_daftar(k).getPosisi().getAbsis()==j) && (get_daftar(k).getPosisi().getOrdinat()==i))
 					{
-						System.out.print(get_daftar(k).get_DNA());
+						out.write(get_daftar(k).get_DNA()+"");
 						found = true;
 					}
 				}
-				if(!found) System.out.print(".");
+				if(!found) out.write(".");
 			}
-			System.out.println();
+			out.write("\n");
 		}
+		out.flush();
+		out.close();
 	}
 
 	public void creation(Point P, char opsi)
