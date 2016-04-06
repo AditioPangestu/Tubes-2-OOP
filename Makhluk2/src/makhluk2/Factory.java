@@ -10,7 +10,7 @@ class Factory
 		t.setPredator(1,'u');
 
 		t.set_batas_umur(99);
-		t.set_DNA('^');
+		t.set_DNA('!');
 		t.set_ulang_tahun(1);
 	}
 
@@ -26,7 +26,7 @@ class Factory
 		t.setPredator(7,'y');
 
 		t.set_batas_umur(73);
-		t.set_DNA('!');
+		t.set_DNA('^');
 		t.set_ulang_tahun(1);
 	}
 
