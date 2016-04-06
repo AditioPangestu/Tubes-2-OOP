@@ -7,6 +7,7 @@ package makhluk2;
 
 import net.slashie.libjcsi.ConsoleSystemInterface;
 import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
+import net.slashie.libjcsi.wswing.WSwingConsoleInterface;
 
 /**
  *
@@ -17,11 +18,10 @@ public class Makhluk2 {
         World W = new World();
         W.initDisplay();
         Point P = new Point(15,15);
-        ConsoleSystemInterface csi = null;
+        ConsoleSystemInterface csi = new WSwingConsoleInterface("wawa");
         
         try {
-                
-                 csi = new JCursesConsoleInterface();
+             
                  csi.cls();
                  csi.print(10, 10, "baaaaaaaa");
                 } catch (ExceptionInInitializerError e) {
@@ -30,7 +30,6 @@ public class Makhluk2 {
                 finally {
                     
                 }
-        W.draw(P,'c');
         System.out.println("wawaw");
     }
 }
