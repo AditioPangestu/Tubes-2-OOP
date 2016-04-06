@@ -74,4 +74,9 @@ public class Point {
 		public void setOrdinat(int _y){
 			y = _y;
 		}
+
+		public String toString()
+		{
+			return(Integer.toString(x)+" "+Integer.toString(y));
+		}
 }

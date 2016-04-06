@@ -44,7 +44,7 @@ class Factory
 		h.set_ulang_tahun(3);
 		h.set_maks_tingkat_kekenyangan(9);
 		h.set_tingkat_kekenyangan(9);
-		h.setKecepatan(2);
+		h.set_Kecepatan(2);
 		h.set_deltaKecepatan(2);
 	}
 
@@ -66,7 +66,7 @@ class Factory
 		h.set_ulang_tahun(2);
 		h.set_maks_tingkat_kekenyangan(9);
 		h.set_tingkat_kekenyangan(9);
-		h.setKecepatan(5);
+		h.set_Kecepatan(5);
 		h.set_deltaKecepatan(2);
 	}
 }
