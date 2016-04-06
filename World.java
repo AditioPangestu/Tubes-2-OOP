@@ -40,7 +40,12 @@ class World  {
 
 	private void clear()
 	{
-		//system("cls");
+		CLS n = new CLS();
+		try {
+			n.clear();
+		} catch (IOException e1) {}
+		catch (InterruptedException e2) {}
+		finally {}
 	}
 
 //public//=============================================================================================
