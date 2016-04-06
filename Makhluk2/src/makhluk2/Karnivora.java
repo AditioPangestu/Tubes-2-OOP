@@ -1,3 +1,5 @@
+package makhluk2;
+
 public class Karnivora extends Hewan {
 	
 	/**

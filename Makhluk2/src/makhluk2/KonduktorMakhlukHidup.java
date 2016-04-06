@@ -1,3 +1,4 @@
+package makhluk2;
 
 interface KonduktorMakhlukHidup {
     public void aging(MakhlukHidup m1);

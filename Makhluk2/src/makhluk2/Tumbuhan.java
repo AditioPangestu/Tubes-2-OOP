@@ -1,4 +1,4 @@
-
+package makhluk2;
 
 
 class Tumbuhan extends MakhlukHidup

@@ -1,3 +1,5 @@
+package makhluk2;
+
 import java.io.IOException;
 
 class CLS {

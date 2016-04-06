@@ -1,3 +1,5 @@
+package makhluk2;
+
 interface DirectionSetter {
 	
 	/**

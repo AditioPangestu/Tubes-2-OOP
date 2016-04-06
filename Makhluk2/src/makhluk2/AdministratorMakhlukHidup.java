@@ -1,3 +1,5 @@
+package makhluk2;
+
 import java.util.Vector;
 
 interface AdministratorMakhlukHidup {

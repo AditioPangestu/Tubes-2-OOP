@@ -1,3 +1,5 @@
+package makhluk2;
+
 public abstract class MakhlukHidup {
 	/**
 	 * An attribute that save organism's age
@@ -147,6 +149,10 @@ public abstract class MakhlukHidup {
 	 */
 	public void set_umur(int a){
 		umur = a;
+	}
+        
+        public void set_batas_umur(int a){
+		batas_umur = a;
 	}
 	
 	/**

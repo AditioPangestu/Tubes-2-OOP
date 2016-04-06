@@ -1,3 +1,5 @@
+package makhluk2;
+
 import java.util.Random;
 
 public abstract class Hewan extends MakhlukHidup implements DirectionSetter {

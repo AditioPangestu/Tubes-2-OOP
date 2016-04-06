@@ -1,3 +1,5 @@
+package makhluk2;
+
 public class Omnivora extends Hewan {
 	/**
 	 * A constructor
