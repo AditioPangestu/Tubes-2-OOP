@@ -270,7 +270,6 @@ class World  {
 	public void tangkapLayar() throws IOException, NullPointerException
 	{
 		boolean found;
-		//ofstream out("out.txt");
 		File outfile = new File("out.txt");
 		outfile.createNewFile();
 		FileWriter out = new FileWriter(outfile);
@@ -308,9 +307,8 @@ class World  {
 			{
 				case '1' :
 				{
-					/*Manusia m = new Manusia();
-                                        //HidupPolisi
-					fillDaftar(m);*/
+					Polisi m = new Polisi(P);
+					fillDaftar(m);
 					break;
 				}
 
@@ -325,7 +323,7 @@ class World  {
 				case '3' :
 				{
 					Karnivora m = new Karnivora();
-                                        //HidupHyena
+                                        Factory.makeHyena(m);
 					fillDaftar(m);
 					break;
 				}
@@ -333,16 +331,15 @@ class World  {
 				case '4' :
 				{
 					Omnivora m = new Omnivora();
-                                        //HidupBeruang
+                                        Factory.makeBeruang(m);
 					fillDaftar(m);
 					break;
 				}
 
 				case '5' :
 				{
-					/*Manusia m = new Manusia();
-                                        //HidupPemburu
-					fillDaftar(m);*/
+					Pemburu m = new Pemburu(P);
+					fillDaftar(m);
 					break;
 				}
 
@@ -373,7 +370,7 @@ class World  {
 				case '9' :
 				{
 					Karnivora m = new Karnivora();
-                                        //HidupHarimau
+                                        Factory.makeHarimau(m);
 					fillDaftar(m);
 					break;
 				}
@@ -381,7 +378,7 @@ class World  {
 				case '0' :
 				{
 					Omnivora m = new Omnivora();
-                                        //HidupMandril
+                                        Factory.makeMandril(m);
 					fillDaftar(m);
 					break;
 				}
@@ -425,85 +422,73 @@ class World  {
     	return Count;
     }
     public void hidup(MakhlukHidup m1) {
-	    if (m1 instanceof Manusia) {
-                hidup((Manusia)m1);
-            } else if (m1 instanceof Karnivora) {
-                hidup((Karnivora)m1);
-            } else if (m1 instanceof Herbivora) {
-                hidup((Herbivora)m1);
-            } else if (m1 instanceof Omnivora) {
-                hidup((Omnivora)m1);
-            } else if (m1 instanceof Tumbuhan) {
-                hidup((Tumbuhan)m1);
-            }
-            
-            if (!(m1 instanceof Tumbuhan)) {
-                if(lifeState == 1) //cek pause atau tidak
+        if (!(m1 instanceof Tumbuhan)) {
+            if(lifeState == 1) //cek pause atau tidak
+            {
+                if(((Manusia)m1).get_Kecepatan() != 0)
                 {
-                    if(((Manusia)m1).get_Kecepatan() != 0)
-                    {
-                        if (Count%(10-((Manusia)m1).get_Kecepatan()) == 0){
-                            if(((Manusia)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
-                            {
-                                ((Manusia)m1).set_Arah(8);
+                    if (Count%(10-((Manusia)m1).get_Kecepatan()) == 0){
+                        if(((Manusia)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
+                        {
+                            ((Manusia)m1).set_Arah(8);
 
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi() == new Point(0,29))//kiri-bawah
-                            {
-                                ((Manusia)m1).set_Arah(2);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi() == new Point(29,0))//kanan-atas
-                            {
-                                ((Manusia)m1).set_Arah(6);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi() == new Point(0,0))//kiri-atas
-                            {
-                                ((Manusia)m1).set_Arah(4);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi().getAbsis() >= 29)//kanan
-                            {
-                                ((Manusia)m1).set_Arah(7);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi().getAbsis() == 0)//kiri
-                            {
-                                ((Manusia)m1).set_Arah(3);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi().getOrdinat() >= 29)
-                            {
-                                ((Manusia)m1).set_Arah(1);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else if(((Manusia)m1).getPosisi().getOrdinat() == 0)
-                            {
-                                ((Manusia)m1).set_Arah(5);
-
-                                ((Manusia)m1).gerak_berarah();
-                            }
-                            else
-                            {
-                                ((Manusia)m1).gerak_berarah();
-                            }
-
-                            ((Manusia)m1).setSedangMemburu(false);
+                            ((Manusia)m1).gerak_berarah();
                         }
+                        else if(((Manusia)m1).getPosisi() == new Point(0,29))//kiri-bawah
+                        {
+                            ((Manusia)m1).set_Arah(2);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi() == new Point(29,0))//kanan-atas
+                        {
+                            ((Manusia)m1).set_Arah(6);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi() == new Point(0,0))//kiri-atas
+                        {
+                            ((Manusia)m1).set_Arah(4);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi().getAbsis() >= 29)//kanan
+                        {
+                            ((Manusia)m1).set_Arah(7);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi().getAbsis() == 0)//kiri
+                        {
+                            ((Manusia)m1).set_Arah(3);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi().getOrdinat() >= 29)
+                        {
+                            ((Manusia)m1).set_Arah(1);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else if(((Manusia)m1).getPosisi().getOrdinat() == 0)
+                        {
+                            ((Manusia)m1).set_Arah(5);
+
+                            ((Manusia)m1).gerak_berarah();
+                        }
+                        else
+                        {
+                            ((Manusia)m1).gerak_berarah();
+                        }
+
+                        ((Manusia)m1).setSedangMemburu(false);
                     }
                 }
-                else if(lifeState == 0)
-                {
-
-                }
             }
+            else if(lifeState == 0)
+            {
+
+            }
+        }
     }
 }
