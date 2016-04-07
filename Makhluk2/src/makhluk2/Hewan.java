@@ -128,17 +128,17 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	
 	public void set_Arah_Memburu(Point Awal, Point Target)
 	{
-	    if ((Awal.getAbsis() == Target.getAbsis()) && (Awal.getOrdinat() > Target.getOrdinat()))
+	    if ((Awal.getAbsis() == Target.getAbsis()) && (Awal.getOrdinat() < Target.getOrdinat()))
 	        set_Arah(1);
-	    else if ((Awal.getAbsis() < Target.getAbsis()) && (Awal.getOrdinat() > Target.getOrdinat()))
+	    else if ((Awal.getAbsis() < Target.getAbsis()) && (Awal.getOrdinat() < Target.getOrdinat()))
 	        set_Arah(2);
 	    else if ((Awal.getAbsis() < Target.getAbsis()) && (Awal.getOrdinat() == Target.getOrdinat()))
 	        set_Arah(3);
-	    else if ((Awal.getAbsis() < Target.getAbsis()) && (Awal.getOrdinat() < Target.getOrdinat()))
+	    else if ((Awal.getAbsis() < Target.getAbsis()) && (Awal.getOrdinat() > Target.getOrdinat()))
 	        set_Arah(4);
-	    else if ((Awal.getAbsis() == Target.getAbsis()) && (Awal.getOrdinat() < Target.getOrdinat()))
+	    else if ((Awal.getAbsis() == Target.getAbsis()) && (Awal.getOrdinat() > Target.getOrdinat()))
 	        set_Arah(5);
-	    else if ((Awal.getAbsis() > Target.getAbsis()) && (Awal.getOrdinat() < Target.getOrdinat()))
+	    else if ((Awal.getAbsis() > Target.getAbsis()) && (Awal.getOrdinat() > Target.getOrdinat()))
 	        set_Arah(6);
 	    else if ((Awal.getAbsis() > Target.getAbsis()) && (Awal.getOrdinat() == Target.getOrdinat()))
 	        set_Arah(7);
@@ -148,17 +148,17 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	
 	public void set_Arah_Menjauh(Point Awal, Point Predator)
 	{
-	    if ((Awal.getAbsis() == Predator.getAbsis()) && (Awal.getOrdinat() > Predator.getOrdinat()))
+	    if ((Awal.getAbsis() == Predator.getAbsis()) && (Awal.getOrdinat() < Predator.getOrdinat()))
 	        set_Arah(5);
-	    else if ((Awal.getAbsis() < Predator.getAbsis()) && (Awal.getOrdinat() > Predator.getOrdinat()))
+	    else if ((Awal.getAbsis() < Predator.getAbsis()) && (Awal.getOrdinat() < Predator.getOrdinat()))
 	        set_Arah(6);
 	    else if ((Awal.getAbsis() < Predator.getAbsis()) && (Awal.getOrdinat() == Predator.getOrdinat()))
 	        set_Arah(7);
-	    else if ((Awal.getAbsis() < Predator.getAbsis()) && (Awal.getOrdinat() < Predator.getOrdinat()))
+	    else if ((Awal.getAbsis() < Predator.getAbsis()) && (Awal.getOrdinat() > Predator.getOrdinat()))
 	        set_Arah(8);
-	    else if ((Awal.getAbsis() == Predator.getAbsis()) && (Awal.getOrdinat() < Predator.getOrdinat()))
+	    else if ((Awal.getAbsis() == Predator.getAbsis()) && (Awal.getOrdinat() > Predator.getOrdinat()))
 	        set_Arah(1);
-	    else if ((Awal.getAbsis() > Predator.getAbsis()) && (Awal.getOrdinat() < Predator.getOrdinat()))
+	    else if ((Awal.getAbsis() > Predator.getAbsis()) && (Awal.getOrdinat() > Predator.getOrdinat()))
 	        set_Arah(2);
 	    else if ((Awal.getAbsis() > Predator.getAbsis()) && (Awal.getOrdinat() == Predator.getOrdinat()))
 	        set_Arah(3);
@@ -216,7 +216,7 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
     * @return Mengembalikan nilai true jika _target berada pada tabel Target
     */
     public boolean isTarget(char _target){
-		int i = 0;
+            int i = 0;
 	    boolean stop = false;
 	    while ((i < ukuran_target) && (!stop)){
 	        if (Target[i] == _target){
@@ -251,18 +251,19 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
     //Membuat gerakan arah yang ditentukan
     Point gerak_berarah(Point Awal)
     {
-        Point temp = Awal;
+        Point temp = new Point(); 
+        temp = Awal;
         switch (get_Arah()) {
-            case 1 : temp.geser(0,-1); break;
-            case 2 : temp.geser(1,-1); break;
+            case 1 : temp.geser(0,1); break;
+            case 2 : temp.geser(1,1); break;
             case 3 : temp.geser(1,0); break;
-            case 4 : temp.geser(1,1); break;
-            case 5 : temp.geser(0,1); break;
-            case 6 : temp.geser(-1,1); break;
+            case 4 : temp.geser(1,-1); break;
+            case 5 : temp.geser(0,-1); break;
+            case 6 : temp.geser(-1,-1); break;
             case 7 : temp.geser(-1,0); break;
-            case 8 : temp.geser(-1,-1); break;
+            case 8 : temp.geser(-1,1); break;
         }
-    return temp;
+            return temp;
 	}
 
     /**
@@ -270,7 +271,7 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	 * A procedure that makes animal move in a direction that has been set
 	 */ 
     public void gerak_berarah(){
-		tingkat_kekenyangan--;
+            tingkat_kekenyangan--;
 	    hewanMati();
 	    if (!isMati()){
 	        setLapar();

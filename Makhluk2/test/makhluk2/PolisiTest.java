@@ -43,11 +43,14 @@ public class PolisiTest {
     @Test
     public void testReaction() {
         System.out.println("Reaction");
-        MakhlukHidup M = null;
-        Polisi instance = null;
+        Point P1 = new Point(1,0);
+        Point P2 = new Point(1,1);
+        MakhlukHidup M = new Pemburu(P2);
+        Polisi instance = new Polisi(P1);
         instance.Reaction(M);
+        instance.gerak_berarah();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.getPosisi().getAbsis(),P2.getAbsis());
     }
     
 }
