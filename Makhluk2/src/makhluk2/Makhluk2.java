@@ -54,20 +54,32 @@ public class Makhluk2 {
         while (!W.isGameOver()) {
             try {
                 n.clear();
-                Thread.sleep(1000);
-            } catch (Exception e) {} finally {
-                W.sinyal();
-                for (int i = 0; i < W.get_count(); i++) {
-                    W.hidup(W.get_daftar(i));
-                }
-                
-                for (int i = 0; i < W.get_count(); i++) {
-                    W.aging(W.get_daftar(i));
-                }
-                W.printDunia();
-                try {
-                    Thread.sleep(2000);
-                } catch (Exception e) {} finally {}
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            W.sinyal();
+            for (int i = 0; i < W.get_count(); i++) {
+                W.hidup(W.get_daftar(i));
+            }
+
+            for (int i = 0; i < W.get_count(); i++) {
+                W.aging(W.get_daftar(i));
+            }
+            
+            W.printDunia();
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            //W.updateDisplay();
+            W.setCount(W.getCount()+1);
+            
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         
