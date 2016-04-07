@@ -64,6 +64,7 @@ public class Makhluk2 {
                 for (int i = 0; i < W.get_count(); i++) {
                     W.aging(W.get_daftar(i));
                 }
+                W.updateDisplay();
                 W.printDunia();
                 try {
                     Thread.sleep(2000);
