@@ -11,11 +11,20 @@ import net.slashie.libjcsi.ConsoleSystemInterface;
 import java.util.*;
 import java.io.*;
 
+/**
+ *  A World is a singleton that 
+ *	contains information of all object within it and capable to display them.
+ */
 class World  {
-        
-	private int panjang;
-	private int lebar;
-        ConsoleSystemInterface csi;
+        /**
+         * Dunia[][] to store the world's frame
+         * size the limit of MakhlukHidup in World
+         * count counter of MakhlukHidup currently in World
+         * daftar the list of things that instance of MakhlukHidup
+         * lifeState indicates the MakhlukHidup has died or not yet
+         * Count counter of age
+         * clear() void to clear the console screen
+         */
         char Dunia[][] = new char[30][30];
         
 
@@ -50,7 +59,7 @@ class World  {
 	    cursorInfo.bVisible = b; // set the cursor visibility
 	    SetConsoleCursorInfo(out, cursorInfo);*/
 	}
-
+        
 	private void clear()
 	{
 		CLS n = new CLS();
@@ -64,15 +73,20 @@ class World  {
 //public//=============================================================================================
         
 //World//==============================================================================================
-	public World() {
-            csi = new WSwingConsoleInterface("Makhluk2");
+	/**
+	 *  A constructor of World class
+	 */
+        public World() {
+            
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 30; j++)  {
                     Dunia[i][j] = '.';
                 }
             }
         }
-        
+        /**
+	 *  Store an empty world (all dot)
+	 */
         public void printDunia() {
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 30; j++)  {
@@ -81,10 +95,12 @@ class World  {
                 System.out.println();
             }
         }
-        
+        /**
+	 *  Draw an empty world (all dot)
+	 */
         public void initDisplay() throws ExceptionInInitializerError
 	{
-            csi.cls();
+            clear();
             size = 10;
             count = 0;
             lifeState = 1;
@@ -94,17 +110,18 @@ class World  {
 	    {
 	        for(int j=0; j<30; ++j)
 	        {
-	            System.out.print('.');
-                    csi.print(i, j, Character.toString('.'));
+	            System.out.print(Dunia[i][j]);
 	        }
 	        System.out.println();
-                csi.print(i,29, "\n");
 	    }
 	}
         
         
 //=======================================================================================
-	public void updateDisplay() throws ExceptionInInitializerError
+	/**
+	 *  Draw all current object within world
+	 */
+        public void updateDisplay() throws ExceptionInInitializerError
 	{
 	    for(int i=0; i<get_count(); ++i)
 	    {
@@ -122,7 +139,7 @@ class World  {
 	        }
 	    }
 	}
-
+        
 	public void updateMakhluk(int i) throws ExceptionInInitializerError
 	{
 		boolean end = false;
@@ -157,7 +174,9 @@ class World  {
 			}
 		}
 	}
-
+        /**
+	 *  Draw display at Pc and remove the previous drawing at Px
+	 */
 	public void draw(Point Px, Point Pc, char display) throws ExceptionInInitializerError
 	{
 		int ex_X = Px.getAbsis();
@@ -172,17 +191,20 @@ class World  {
                 //csi.print(x, y, Character.toString(display));
                     
 	}
-
+        /**
+	 *  Draw display at Pc and without removing the drawing at Px
+	 */
 	public void draw(Point Pc, char display) throws ExceptionInInitializerError
 	{
 		int x = Pc.getAbsis();
 		int y = Pc.getOrdinat();
                 
                 
-                csi.print(x, y, Character.toString(display));
                 Dunia[x][y] = display;
 	}
-
+        /**
+	 *  Draw Makhlukhidup at it's current position and remove it's previous drawing
+	 */
 	public void draw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
 		Point P  = m1.getPosisi();
@@ -191,7 +213,9 @@ class World  {
 
 		m1.setPrecPosisi(P);
 	}
-
+        /**
+	 *  Draw Makhlukhidup for when it first drawn
+	 */
 	public void initDraw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
 		Point P = m1.getPosisi();
@@ -199,13 +223,17 @@ class World  {
 
 		m1.setPrecPosisi(P);
 	}
-
+        /**
+	 *  Draw Makhlukhidup for when it's dead status
+	 */
 	public void endDraw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
 		draw(m1.getPrecPosisi(), '.');
 		draw(m1.getPosisi(), '_');
 	}
-
+        /**
+	 *  Check wether game-over condition is met
+	 */
 	public boolean isGameOver()
 	{
 
@@ -213,7 +241,9 @@ class World  {
 		else				 return false;
 
 	}
-
+        /**
+	 *  Save current world in txt format
+	 */
 	public void tangkapLayar() throws IOException, NullPointerException
 	{
 		boolean found;
@@ -245,7 +275,9 @@ class World  {
 		out.flush();
 		out.close();
 	}
-
+        /**
+ 	*  create a new MakhlukHidup and put it in monitored list
+ 	*/	
 	public void creation(Point P, char opsi)
 	{
 		if(get_count() < get_size())
@@ -332,7 +364,9 @@ class World  {
 			}
 		}
 	}
-
+        /**
+ 	*  make isMati attributes of all MakhlukHidup in daftar = true
+ 	*/	
 	public void killAll()
 	{
 		for(int i=0; i<get_count(); i++)
@@ -345,29 +379,59 @@ class World  {
 	}
 
 ///Konduktor///=======================================================================
+    /**
+     * Setter lifestate method
+     * @param ls integer
+     */
     public void setLifeState(int ls) {
         lifeState = ls;
     }
+    /**
+     * Getter lifeState method
+     * @return integer
+     */
     public int getLifeState() {
         return lifeState;
     }
+    /**
+     * Aging of MakhlukHidup 
+     * @param m1 MakhlukHidup
+     */
     public void aging(MakhlukHidup m1) {
         if((lifeState == 1) && (Count%10 == 0)) {
             m1.menua();
         }
     }
+    /**
+     * Setting the lifestate with 0
+     */
     public void pause() {
     	lifeState = 0;
     }
+    /**
+     * Setting the lifestate with 1
+     */
     public void resume() {
     	lifeState = 1;
     }
+    /**
+     * Setting the count member with c
+     * @param c integer
+     */
     public void setCount(int c) {
     	Count = c;
     }
+    /**
+     * Getter count member
+     * @return integer
+     */
     public int getCount() {
     	return Count;
     }
+    /**
+     * Making the reactions and the age of the MakhlukHidup
+     * @param m1 MakhlukHidup
+     */
     public void hidup(MakhlukHidup m1) {
         if (!(m1 instanceof Tumbuhan)) {
             if(lifeState == 1) //cek pause atau tidak
@@ -439,71 +503,98 @@ class World  {
         }
     }
     ///Administrator///======================================================================================
+    /**
+    *  put in a MakhlukHidup in the monitored list
+    */
     public void fillDaftar(MakhlukHidup n)
-	{
-		daftar.add(count,n);
-		count++;
-	}
-
-	public void pluck(MakhlukHidup n)
-	{
-		for(int i=0; i<get_count(); i++)
-		{
-			if(get_daftar(i) == n)
-			{
-				daftar.remove(i);
-				break;
-			}
-		}
-	}
-
-	public void pluck(int i)
-	{
-		daftar.remove(i);
-		count--;
-	}
-
-	public void sinyal()
-	{
-	    for(int i1=0; i1 < get_count(); i1++){
-	        for(int i2=0; i2 < get_count(); i2++)
-	        {
-	            if(i1 != i2)
-	            {
-	                    get_daftar(i1).Reaction(get_daftar(i2));
-	            }
-	        }
-	    }
-	}
-
-	public int get_size()
-	{
-		return size;
-	}
-
-	public int get_count()
-	{
-		return daftar.size();
-	}
-
-	public Vector<MakhlukHidup> get_daftar()
-	{
-		return daftar;
-	}
-
-	public MakhlukHidup get_daftar(int i)
-	{
-		return daftar.get(i);
-	}
-
-	//setter
-	public void set_size(int s)
-	{
-		size = s;
-	}
-
-	public void set_count(int c)
-	{
-		count = c;
-	}
+    {
+            daftar.add(count,n);
+            count++;
+    }
+    /**
+    *  put out a MakhlukHidup in the monitored list with certain pointer
+    */	
+    public void pluck(MakhlukHidup n)
+    {
+            for(int i=0; i<get_count(); i++)
+            {
+                    if(get_daftar(i) == n)
+                    {
+                            daftar.remove(i);
+                            break;
+                    }
+            }
+    }
+    /**
+    *  put out a MakhlukHidup in the monitored list with certain index
+    */	
+    public void pluck(int i)
+    {
+            daftar.remove(i);
+            count--;
+    }
+    /**
+    *  create a thread to monitor each pair of MakhlukHidup
+    */	
+    public void sinyal()
+    {
+        for(int i1=0; i1 < get_count(); i1++){
+            for(int i2=0; i2 < get_count(); i2++)
+            {
+                if(i1 != i2)
+                {
+                        get_daftar(i1).Reaction(get_daftar(i2));
+                }
+            }
+        }
+    }
+    /**
+     * Getter size attribute
+     * @return this.size integer
+     */
+    public int get_size()
+    {
+            return size;
+    }
+    /**
+     * Getter count attribute
+     * @return this.count integer
+     */
+    public int get_count()
+    {
+            return daftar.size();
+    }
+    /**
+     * Getter of daftar attribute
+     * @return 
+     */
+    public Vector<MakhlukHidup> get_daftar()
+    {
+            return daftar;
+    }
+    /**
+     * Getter of the contains of daftar attribute
+     * @param i
+     * @return 
+     */
+    public MakhlukHidup get_daftar(int i)
+    {
+            return daftar.get(i);
+    }
+    /**
+     * Setter
+     * @param s size
+     */
+    public void set_size(int s)
+    {
+            size = s;
+    }
+    /**
+     * Setter
+     * @param c count
+     */
+    public void set_count(int c)
+    {
+            count = c;
+    }
 }
