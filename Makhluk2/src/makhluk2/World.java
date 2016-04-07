@@ -200,7 +200,7 @@ class World  {
 		int y = Pc.getOrdinat();
                 
                 
-                Dunia[x][y] = display;
+                Dunia[x][y] = display;  
 	}
         /**
 	 *  Draw Makhlukhidup at it's current position and remove it's previous drawing
@@ -433,7 +433,7 @@ class World  {
      * @param m1 MakhlukHidup
      */
     public void hidup(MakhlukHidup m1) {
-        if (!(m1 instanceof Tumbuhan)) {
+        if (true) {
             if(lifeState == 1) //cek pause atau tidak
             {
                 if(((Hewan)m1).get_Kecepatan() != 0)
