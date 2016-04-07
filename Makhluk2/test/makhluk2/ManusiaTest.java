@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Aditio Pangestu
+ * @author Ali-pc
  */
 public class ManusiaTest {
     
@@ -43,11 +43,14 @@ public class ManusiaTest {
     @Test
     public void testSetMenghindar() {
         System.out.println("setMenghindar");
-        boolean m = false;
-        Manusia instance = new Manusia();
+        boolean m = true;
+        Manusia instance = new ManusiaImpl();
         instance.setMenghindar(m);
+        boolean expResult = true;
+        boolean result = instance.getMenghindar();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result);
+        
     }
 
     /**
@@ -56,12 +59,12 @@ public class ManusiaTest {
     @Test
     public void testGetMenghindar() {
         System.out.println("getMenghindar");
-        Manusia instance = new Manusia();
+        Manusia instance = new ManusiaImpl();
         boolean expResult = false;
         boolean result = instance.getMenghindar();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -71,10 +74,16 @@ public class ManusiaTest {
     public void testReaction() {
         System.out.println("Reaction");
         MakhlukHidup M = null;
-        Manusia instance = new Manusia();
+        Manusia instance = new ManusiaImpl();
         instance.Reaction(M);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+    }
+
+    public class ManusiaImpl extends Manusia {
+
+        public void Reaction(MakhlukHidup M) {
+        }
     }
     
 }
