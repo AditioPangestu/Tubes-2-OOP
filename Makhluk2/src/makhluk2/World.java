@@ -25,13 +25,13 @@ class World  {
          * Count counter of age
          * clear() void to clear the console screen
          */
-        char Dunia[][] = new char[90][90];
+        char Dunia[][] = new char[35][35];
         
 
 ///Administrator///=========================================================================
 	private int size=10; //banyak makhluk maksimal
 	private int count=0; //banyak makhluk dalam daftar
-	private Vector<MakhlukHidup> daftar = new Vector<MakhlukHidup>(size);//array pointer objek makhluk
+	private Vector<MakhlukHidup> daftar = new Vector<MakhlukHidup>(10);//array pointer objek makhluk
         
 ///Konduktor///=============================================================================
     private int lifeState;
@@ -106,9 +106,9 @@ class World  {
             lifeState = 1;
             Count = 0;
             resetCursor();
-	    for(int i=0; i<30; ++i)
+	    for(int i=0; i<30; i++)
 	    {
-	        for(int j=0; j<30; ++j)
+	        for(int j=0; j<30; j++)
 	        {
 	            System.out.print(Dunia[i][j]);
 	        }
@@ -123,7 +123,7 @@ class World  {
 	 */
         public void updateDisplay() throws ExceptionInInitializerError
 	{
-	    for(int i=0; i<get_count(); ++i)
+	    for(int i=0; i<get_count(); i++)
 	    {
 	        if(get_daftar(i) != null)
 	        {
@@ -200,15 +200,17 @@ class World  {
 		int y = Pc.getOrdinat();
                 
                 
-                Dunia[x][y] = display;  
+                Dunia[x][y] = display;
 	}
         /**
 	 *  Draw Makhlukhidup at it's current position and remove it's previous drawing
 	 */
 	public void draw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
-		Point P  = m1.getPosisi();
-		Point PP = m1.getPrecPosisi();
+		Point P  = new Point(); 
+                P = m1.getPosisi();
+		Point PP = new Point(); 
+                PP = m1.getPrecPosisi();
 		draw(PP, P, m1.get_DNA());
 
 		m1.setPrecPosisi(P);
@@ -218,10 +220,9 @@ class World  {
 	 */
 	public void initDraw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
-		Point P = m1.getPosisi();
-		draw(P, m1.get_DNA());
+		draw(m1.getPosisi(), m1.get_DNA());
 
-		m1.setPrecPosisi(P);
+		m1.setPrecPosisi(m1.getPosisi());
 	}
         /**
 	 *  Draw Makhlukhidup for when it's dead status
@@ -433,57 +434,65 @@ class World  {
      * @param m1 MakhlukHidup
      */
     public void hidup(MakhlukHidup m1) {
-        if (true) {
+        if (!(m1 instanceof Tumbuhan)) {
             if(lifeState == 1) //cek pause atau tidak
             {
                 if(((Hewan)m1).get_Kecepatan() != 0)
                 {
                     if (Count%(10-((Hewan)m1).get_Kecepatan()) == 0){
-                        if(((Hewan)m1).getPosisi() == new Point(29,29))//ujung kanan-bawah
+                        if((((Hewan)m1).getPosisi().getAbsis() >= 29) && (((Hewan)m1).getPosisi().getOrdinat() >= 29))//ujung kanan-bawah
                         {
-                            ((Hewan)m1).set_Arah(8);
+                            Point posisi = new Point(28,28);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Hewan)m1).getPosisi() == new Point(0,29))//kiri-bawah
+                        else if((((Hewan)m1).getPosisi().getAbsis() == 0) && (((Hewan)m1).getPosisi().getOrdinat() >= 29))//kiri-bawah
                         {
-                            ((Hewan)m1).set_Arah(2);
+                            Point posisi = new Point(1,28);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Hewan)m1).getPosisi() == new Point(29,0))//kanan-atas
+                        else if((((Hewan)m1).getPosisi().getAbsis() >= 29) && (((Hewan)m1).getPosisi().getOrdinat() == 0))//kanan-atas
                         {
-                            ((Hewan)m1).set_Arah(6);
+                            Point posisi = new Point(28,1);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
-                        else if(((Hewan)m1).getPosisi() == new Point(0,0))//kiri-atas
+                        else if((((Hewan)m1).getPosisi().getAbsis() >= 0) && (((Hewan)m1).getPosisi().getOrdinat() == 0))//kiri-atas
                         {
-                            ((Hewan)m1).set_Arah(4);
+                            Point posisi = new Point(1,1);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
                         else if(((Hewan)m1).getPosisi().getAbsis() >= 29)//kanan
                         {
-                            ((Hewan)m1).set_Arah(7);
+                            Point posisi = new Point(28,m1.getPosisi().getOrdinat());
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
                         else if(((Hewan)m1).getPosisi().getAbsis() == 0)//kiri
                         {
-                            ((Hewan)m1).set_Arah(3);
+                            Point posisi = new Point(1,m1.getPosisi().getOrdinat());
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
                         else if(((Hewan)m1).getPosisi().getOrdinat() >= 29)
                         {
-                            ((Hewan)m1).set_Arah(1);
+                            Point posisi = new Point(m1.getPosisi().getAbsis(),28);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }
                         else if(((Hewan)m1).getPosisi().getOrdinat() == 0)
                         {
-                            ((Hewan)m1).set_Arah(5);
+                            Point posisi = new Point(m1.getPosisi().getAbsis(),1);
+                            ((Hewan)m1).setPosisi(posisi);
 
                             ((Hewan)m1).gerak_berarah();
                         }

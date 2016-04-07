@@ -21,7 +21,7 @@ public class Makhluk2 {
         CLS n = new CLS();
         
         Point P = new Point(15,15);
-         Point P1 = new Point(5,18);
+        Point P1 = new Point(5,18);
         Polisi m1 = new Polisi(P1);
         Point P2 = new Point(2,20);
         Karnivora m2 = new Karnivora();
@@ -54,21 +54,34 @@ public class Makhluk2 {
         while (!W.isGameOver()) {
             try {
                 n.clear();
-                Thread.sleep(1000);
-            } catch (Exception e) {} finally {
-                W.sinyal();
-                for (int i = 0; i < W.get_count(); i++) {
-                    W.hidup(W.get_daftar(i));
-                }
-                
-                for (int i = 0; i < W.get_count(); i++) {
-                    W.aging(W.get_daftar(i));
-                }
-                W.updateDisplay();
-                W.printDunia();
-                try {
-                    Thread.sleep(2000);
-                } catch (Exception e) {} finally {}
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            W.sinyal();
+            
+            for (int i = 0; i < W.get_count(); i++) {
+                W.hidup(W.get_daftar(i));
+            }
+
+            for (int i = 0; i < W.get_count(); i++) {
+                W.aging(W.get_daftar(i));
+            }
+            W.updateDisplay();
+            W.printDunia();
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            //W.updateDisplay();
+            W.setCount(W.getCount()+1);
+//            System.out.println(" prec " + W.get_daftar(1).getPrecPosisi().toString());
+            //System.out.println(W.get_daftar(1).getPosisi().toString());
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         
