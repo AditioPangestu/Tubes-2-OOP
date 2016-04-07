@@ -25,7 +25,7 @@ class World  {
          * Count counter of age
          * clear() void to clear the console screen
          */
-        char Dunia[][] = new char[30][30];
+        char Dunia[][] = new char[90][90];
         
 
 ///Administrator///=========================================================================
