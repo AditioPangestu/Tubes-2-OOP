@@ -10,6 +10,10 @@ import java.util.Set;
 import net.slashie.libjcsi.ConsoleSystemInterface;
 import net.slashie.libjcsi.jcurses.JCursesConsoleInterface;
 import net.slashie.libjcsi.wswing.WSwingConsoleInterface;
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
  *
@@ -19,9 +23,10 @@ public class Makhluk2 {
     public static void main(String[] args) {
         //Inisialisasi
         CLS n = new CLS();
+        ListenKey L = new ListenKey();
         
         Point P = new Point(15,15);
-         Point P1 = new Point(5,18);
+        Point P1 = new Point(5,18);
         Polisi m1 = new Polisi(P1);
         Point P2 = new Point(2,20);
         Karnivora m2 = new Karnivora();
@@ -37,8 +42,8 @@ public class Makhluk2 {
         Point P9 = new Point(13,18);
 
         World W = new World();
-        
-        
+        L.simpanWorld(W);
+        NativeKeyEvent e;
         W.fillDaftar(m1);
         W.fillDaftar(m3);
         W.fillDaftar(m2);
@@ -53,12 +58,14 @@ public class Makhluk2 {
         W.initDraw(m4);
         while (!W.isGameOver()) {
             try {
+                
                 n.clear();
                 Thread.sleep(100);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
             W.sinyal();
+            
             for (int i = 0; i < W.get_count(); i++) {
                 W.hidup(W.get_daftar(i));
             }
@@ -66,21 +73,24 @@ public class Makhluk2 {
             for (int i = 0; i < W.get_count(); i++) {
                 W.aging(W.get_daftar(i));
             }
-            
+            W.updateDisplay();
             W.printDunia();
             try {
                 Thread.sleep(200);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
             //W.updateDisplay();
             W.setCount(W.getCount()+1);
-            
+//            System.out.println(" prec " + W.get_daftar(1).getPrecPosisi().toString());
+            //System.out.println(W.get_daftar(1).getPosisi().toString());
             try {
                 Thread.sleep(100);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
+            
+            
         }
         
     }
