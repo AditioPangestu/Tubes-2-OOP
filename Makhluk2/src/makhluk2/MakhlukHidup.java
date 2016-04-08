@@ -51,6 +51,8 @@ public abstract class MakhlukHidup {
 	 * Making an organism with a default value in every parameter
 	 */
 	public MakhlukHidup(){
+                posisi = new Point();
+                PPosisi = new Point();
 		umur = 0;
 		DNA = '*';
 		ulang_tahun = 0;
@@ -176,7 +178,9 @@ public abstract class MakhlukHidup {
 	 * @param a Point argument that will be assigned to Position Cordinate
 	 */
 	public void setPosisi(Point P){
-		posisi = P;
+            posisi = new Point();
+            posisi.setAbsis(P.getAbsis());
+            posisi.setOrdinat(P.getOrdinat());
 	}
 	
 	/**
@@ -184,7 +188,9 @@ public abstract class MakhlukHidup {
 	 * @param a Point argument that will be assigned to PPosition Cordinate
 	 */
 	public void setPrecPosisi(Point P){
-		PPosisi  = P;
+            PPosisi = new Point();
+            PPosisi.setAbsis(P.getAbsis());
+            PPosisi.setOrdinat(P.getOrdinat());
 	}
 	
 	/**

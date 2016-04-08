@@ -195,11 +195,11 @@ public class WorldTest {
     public void testCreation() {
         System.out.println("creation");
         Point P = null;
-        char opsi = ' ';
         World instance = new World();
-        instance.creation(P, opsi);
+        instance.creation(P, '1');
+        instance.creation(P, '2');
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((instance.get_daftar(0) instanceof Polisi) && (instance.get_daftar(1) instanceof Herbivora));
     }
 
     /**
