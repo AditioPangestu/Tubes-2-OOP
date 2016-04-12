@@ -1,11 +1,12 @@
 package makhluk2;
-
-
-
+/**
+ * A class that extends from Hewan because it has a specific and special behavior and properties among other Hewan class
+ * 
+ * @author Hendricus
+ */
 class Herbivora extends Hewan 
 {
-
-	/**
+    /**
      *  Store information how fast the Herbivore got to be.
      */
     private int deltaKecepatan;

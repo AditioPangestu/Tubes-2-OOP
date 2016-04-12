@@ -1,8 +1,12 @@
 package makhluk2;
-
+/**
+ * An interface that set every directions move of MakhlukHidup
+ * 
+ * @author Aditio Pangestu
+ */
 interface DirectionSetter {
 	
-	/**
+    /**
      * A setter for Arah.
      * @param arah is integer argument that will be assigned to dircetion.
      * It has value between 1 to 8.

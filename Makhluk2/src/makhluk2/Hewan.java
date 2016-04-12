@@ -1,7 +1,11 @@
 package makhluk2;
 
 import java.util.Random;
-
+/**
+ * An abstract class that describe the global definition of any object in the world
+ * 
+ * @author Aditio Pangestu
+ */
 public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	/**
 	 * An attribute that save the sated rate of the animal
