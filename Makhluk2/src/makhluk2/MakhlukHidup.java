@@ -2,7 +2,7 @@ package makhluk2;
 
 /**
  * a base class for all organism within the ecosystem
- * @author CXXXV
+ * @author Aditio Pangestu
  */
 public abstract class MakhlukHidup {
 	/**

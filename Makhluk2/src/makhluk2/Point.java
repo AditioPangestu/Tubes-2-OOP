@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * A class that represent a point within Cartesian system
- * @author CXXXV
+ * @author Aditio Pangestu
  */
 public class Point {
 		/* An attribute to store the absis of the Point */

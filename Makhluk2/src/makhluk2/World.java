@@ -14,7 +14,7 @@ import java.io.*;
 /**
  *  A World is a singleton that 
  *  contains information of all object within it and capable to display them.
- *  @author Hendrikus
+ *  @author Harry Alvin
  */
 class World  {
         /**

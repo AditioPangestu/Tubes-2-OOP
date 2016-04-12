@@ -7,7 +7,7 @@ package makhluk2;
 
 /**
  * A class that represents an illegal hunter which hunt animals within the ecosystem.
- * @author Ali-pc
+ * @author Ali Akbar
  */
 public class Pemburu extends Manusia{
     /**

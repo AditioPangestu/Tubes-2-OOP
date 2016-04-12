@@ -2,7 +2,7 @@ package makhluk2;
 
 /**
  * class which represent a carnivore within an ecosystem
- * @author CXXXV
+ * @author Aditio Pangestu
  */
 public class Karnivora extends Hewan {
 	

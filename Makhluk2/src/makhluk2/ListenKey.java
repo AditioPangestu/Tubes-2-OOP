@@ -11,7 +11,7 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
- *
+ * A class to listen keystroke that pressed by user while the application is running
  * @author Harry Alvin
  */
 class ListenKey implements NativeKeyListener {
