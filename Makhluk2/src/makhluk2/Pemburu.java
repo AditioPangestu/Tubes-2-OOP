@@ -36,7 +36,7 @@ public class Pemburu extends Manusia{
     
     /**
     * A procedure that make the pemburu react to the other MakhlukHidup
-    * @param M is a MakhlukHidup
+    * @param M is a MakhlukHidup which this react to
     */
     @Override
     public void Reaction(MakhlukHidup M){

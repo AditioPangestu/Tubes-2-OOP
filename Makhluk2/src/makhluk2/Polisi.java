@@ -36,8 +36,8 @@ public class Polisi extends Manusia{
         setTarget(1,'^');
     }
     /**
-    * A procedure that make the Polisi react to the other MakhlukHidup
-     * @param M is an MakhlukHidup
+    * define this MakhlukHidup behavior based on other MakhlukHidup
+    * @param M is MakhlukHidup that cause this to react
     */
     @Override
     public void Reaction(MakhlukHidup M){

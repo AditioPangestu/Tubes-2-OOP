@@ -7,7 +7,7 @@ public abstract class Manusia extends Hewan {
      */
     private boolean menghindar;
 	
-	/**
+    /**
      * A Constructor.
      * It use default parameters.
      */
@@ -32,6 +32,10 @@ public abstract class Manusia extends Hewan {
 		return menghindar;
 	}
     
+    /**
+    * define this MakhlukHidup behavior based on other MakhlukHidup
+    * @param M is MakhlukHidup that cause this to react
+    */
     @Override
     public abstract void Reaction(MakhlukHidup M);
 }
