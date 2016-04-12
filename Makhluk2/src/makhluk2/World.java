@@ -140,6 +140,10 @@ class World  {
 	    }
 	}
         
+        /**
+	 * update the position of a makhlukhidup within world matrix
+         * @param i is index of would be updated makhlukhidup
+	 */
 	public void updateMakhluk(int i) throws ExceptionInInitializerError
 	{
 		boolean end = false;
@@ -176,6 +180,9 @@ class World  {
 	}
         /**
 	 *  Draw display at Pc and remove the previous drawing at Px
+         *  @param Px is previous position that would be erased
+         *  @param Pc is the new position that would be drawn
+         *  @param display is the character that would be drawn at Pc
 	 */
 	public void draw(Point Px, Point Pc, char display) throws ExceptionInInitializerError
 	{
@@ -193,6 +200,8 @@ class World  {
 	}
         /**
 	 *  Draw display at Pc and without removing the drawing at Px
+         *  @param Pc is the position of the drawing
+         *  @param char is the character that would be drawn
 	 */
 	public void draw(Point Pc, char display) throws ExceptionInInitializerError
 	{
@@ -204,6 +213,7 @@ class World  {
 	}
         /**
 	 *  Draw Makhlukhidup at it's current position and remove it's previous drawing
+         *  @m1 is MakhlukHidup that would be drawn
 	 */
 	public void draw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
@@ -217,6 +227,7 @@ class World  {
 	}
         /**
 	 *  Draw Makhlukhidup for when it first drawn
+         *  @m1 is MakhlukHidup that would be drawn
 	 */
 	public void initDraw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
@@ -226,6 +237,7 @@ class World  {
 	}
         /**
 	 *  Draw Makhlukhidup for when it's dead status
+         *  @m1 is dead MakhlukHidup that would be drawn
 	 */
 	public void endDraw(MakhlukHidup m1) throws ExceptionInInitializerError
 	{
@@ -234,13 +246,12 @@ class World  {
 	}
         /**
 	 *  Check wether game-over condition is met
+         *  @return true when gameover
 	 */
 	public boolean isGameOver()
 	{
-
 		if(get_count() <= 0) return true;
 		else				 return false;
-
 	}
         /**
 	 *  Save current world in txt format
@@ -278,6 +289,8 @@ class World  {
 	}
         /**
  	*  create a new MakhlukHidup and put it in monitored list
+        *  @param P is position where the new creation will be created
+        *  @param opsi determine what MakhlukHidup is created
  	*/	
 	public void creation(Point P, char opsi)
 	{
@@ -366,7 +379,7 @@ class World  {
 		}
 	}
         /**
- 	*  make isMati attributes of all MakhlukHidup in daftar = true
+ 	*  make Mati attributes of all MakhlukHidup in daftar = true
  	*/	
 	public void killAll()
 	{

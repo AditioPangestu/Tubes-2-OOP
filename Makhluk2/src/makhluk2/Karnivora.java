@@ -1,5 +1,9 @@
 package makhluk2;
 
+/**
+ * class which represent a carnivore within an ecosystem
+ * @author CXXXV
+ */
 public class Karnivora extends Hewan {
 	
 	/**
@@ -25,7 +29,7 @@ public class Karnivora extends Hewan {
         /**
 	 * A constructor
 	 * Making a carnivore animals in a certain position
-         * @param P Point
+         * @param P Point is where this will be created
 	 */
         public Karnivora(Point P){
             super();
@@ -51,6 +55,7 @@ public class Karnivora extends Hewan {
 	
 	/**
 	 * A getter for slowed status
+         * @return true when this is slowing down
 	 */
 	public boolean getMelambat(){
 		return melambat;
@@ -58,6 +63,7 @@ public class Karnivora extends Hewan {
 	
 	/**
 	 * A getter for acceleration of the carnivore
+         * @return the value of member deltaKecepatan
 	 */
 	public int getDeltaKecepatan(){
 		return deltaKecepatan;
@@ -88,7 +94,7 @@ public class Karnivora extends Hewan {
 	/**
 	*  A normal member procedure that take 1 arguments
 	*  A procedure that makes carnivore react to an organism input
-	*  @param M is organism
+	*  @param M is organism which this reach with
 	*/
 	public void Reaction(MakhlukHidup M){
 		prosesMelambat();

@@ -1,5 +1,9 @@
 package makhluk2;
 
+/**
+ * A class that represents an omnivore as an organism within the ecosystem
+ * @author CXXXV
+ */
 public class Omnivora extends Hewan {
 	/**
 	 * A constructor
@@ -12,7 +16,7 @@ public class Omnivora extends Hewan {
         /**
         * A constructor
         * Making a omnivore animals in a certain position
-        * @param P Point
+        * @param P Point define where Omnivora will be created
         */
         public Omnivora(Point P){
             super();
@@ -30,7 +34,7 @@ public class Omnivora extends Hewan {
 	
 	/**
 	 * A function to check whether the organism is plant or not
-	 * @param M is MakhlukHidup
+	 * @param M is MakhlukHidup to check
 	 * @return a boolean
 	 */
 	public boolean isTumbuhan(MakhlukHidup M){
@@ -43,8 +47,8 @@ public class Omnivora extends Hewan {
 	}
 	
 	/**
-	 * A procedure that make the omnivore react to the other MakhlukHidup
-	 * @param M is MakhlukHidup
+         * define this MakhlukHidup behavior based on other MakhlukHidup
+         * @param M is MakhlukHidup that cause this to react
 	 */
 	public void Reaction(MakhlukHidup M){
 		if (M.getPosisi()== getPosisi()){

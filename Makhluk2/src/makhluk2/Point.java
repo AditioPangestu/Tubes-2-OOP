@@ -2,6 +2,10 @@ package makhluk2;
 
 import java.util.*;
 
+/**
+ * A class that represent a point within Cartesian system
+ * @author CXXXV
+ */
 public class Point {
 		/* An attribute to store the absis of the Point */
 		private int x;
@@ -47,7 +51,7 @@ public class Point {
 
 		/**
 		 * Get the absis of the Point
-		 * @return an integer
+		 * @return an integer which represent abscissa 
 		 */
 		public int getAbsis(){
 			return x;
@@ -55,7 +59,7 @@ public class Point {
 		
 		/**
 		 * Get the ordinate of the Point
-		 * @return an integer
+		 * @return an integer which represent ordinate
 		 */
 		public int getOrdinat(){
 			return y;
@@ -77,6 +81,10 @@ public class Point {
 			y = _y;
 		}
 
+                /**
+                 * override toString function
+                 * @return the value of x and y in "x y" format as string
+                 */
 		public String toString()
 		{
 			return(Integer.toString(x)+" "+Integer.toString(y));
