@@ -16,8 +16,8 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
- *
- * @author Ali-pc
+ * Main program that invokes the World class to make the world
+ * @author Harry Alvin
  */
 public class Makhluk2 {
     public static void main(String[] args) {
