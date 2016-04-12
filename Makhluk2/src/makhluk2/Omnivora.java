@@ -1,5 +1,9 @@
 package makhluk2;
 
+/**
+ * A class that represents an omnivore as an organism within the ecosystem
+ * @author CXXXV
+ */
 public class Omnivora extends Hewan {
 	/**
 	 * A constructor

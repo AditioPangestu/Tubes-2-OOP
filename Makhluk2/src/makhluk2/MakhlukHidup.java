@@ -1,5 +1,9 @@
 package makhluk2;
 
+/**
+ * a base class for all organism within the ecosystem
+ * @author CXXXV
+ */
 public abstract class MakhlukHidup {
 	/**
 	 * An attribute that save organism's age

@@ -1,6 +1,9 @@
 package makhluk2;
 
-
+/**
+ * a class that represents plants as an organism within the ecosystem 
+ * @author CXXXV
+ */
 class Tumbuhan extends MakhlukHidup
 {
     /**

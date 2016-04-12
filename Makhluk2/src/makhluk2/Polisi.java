@@ -6,7 +6,7 @@
 package makhluk2;
 
 /**
- *
+ * a class that represents a human who hunt down illegal hunter
  * @author Ali-pc
  */
 public class Polisi extends Manusia{

@@ -2,6 +2,10 @@ package makhluk2;
 
 import java.util.*;
 
+/**
+ * A class that represent a point within Cartesian system
+ * @author CXXXV
+ */
 public class Point {
 		/* An attribute to store the absis of the Point */
 		private int x;

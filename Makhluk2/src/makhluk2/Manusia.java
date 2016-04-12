@@ -1,5 +1,9 @@
 package makhluk2;
 
+/**
+ * A class that represents human as an organism within the ecosystem
+ * @author CXXXV
+ */
 public abstract class Manusia extends Hewan {
 	/**
      * A private attribute.
