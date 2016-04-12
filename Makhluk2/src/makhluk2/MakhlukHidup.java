@@ -236,18 +236,20 @@ public abstract class MakhlukHidup {
 	 * area of this organism Position and false if either
 	 */
 	public boolean isRadius (int rad, Point p){
-		int _x, _y;
-		_x = posisi.getAbsis() - p.getAbsis();
-		if (_x < 0)
-			_x = 0 - _x;
-		_y = posisi.getOrdinat() - p.getOrdinat();
-		if (_y < 0)
-			_y = 0 - _y;
-		return ((_y <= rad) &&(_x <= rad));
+            int _x, _y;
+            _x = posisi.getAbsis() - p.getAbsis();
+            if (_x < 0)
+                    _x = 0 - _x;
+            _y = posisi.getOrdinat() - p.getOrdinat();
+            if (_y < 0)
+                    _y = 0 - _y;
+            return ((_y <= rad) &&(_x <= rad));
 	}
 	
 	/**
-	 * A pure virutal member
+	 * A pure virtual member
+         * define this MakhlukHidup behavior based on other MakhlukHidup
+         * @param M is MakhlukHidup that cause this to react
 	 */
 	public abstract void Reaction( MakhlukHidup M);
 }
