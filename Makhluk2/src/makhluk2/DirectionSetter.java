@@ -4,7 +4,7 @@ interface DirectionSetter {
 	
 	/**
      * A setter for Arah.
-     * @param a int argument that will be assigned to dircetion.
+     * @param arah is integer argument that will be assigned to dircetion.
      * It has value between 1 to 8.
      */
 	void set_Arah(int arah);

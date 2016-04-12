@@ -147,7 +147,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for umur
-	 * @param an integer arguments that will be assigned to umur
+	 * @param a is integer arguments that will be assigned to umur
 	 */
 	public void set_umur(int a){
 		umur = a;
@@ -159,7 +159,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for ulangtahun
-	 * @param an integer arguments that will be assigned to ulangtahun
+	 * @param a is integer arguments that will be assigned to ulangtahun
 	 */
 	public void set_ulang_tahun(int a){
 		ulang_tahun = a;
@@ -175,7 +175,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for Position
-	 * @param a Point argument that will be assigned to Position Cordinate
+	 * @param P is Point argument that will be assigned to Position Cordinate
 	 */
 	public void setPosisi(Point P){
             posisi = new Point();
@@ -185,7 +185,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for PPosition
-	 * @param a Point argument that will be assigned to PPosition Cordinate
+	 * @param P is Point argument that will be assigned to PPosition Cordinate
 	 */
 	public void setPrecPosisi(Point P){
             PPosisi = new Point();
@@ -195,8 +195,8 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for Predator
-	 * @param an integer argument for table index, this integer is always valid
-	 * @param a char of the predator's DNA
+	 * @param i is integer argument for table index, this integer is always valid
+	 * @param _predator is char of the predator's DNA
 	 */
 	public void setPredator(int i, char _predator){
 		predator[i] = _predator;
@@ -204,7 +204,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A setter for mati
-	 * @param a boolean that used to tell if organism die or not
+	 * @param _mati is boolean that used to tell if organism die or not
 	 */
 	public void setMati(boolean _mati){
 		mati = _mati;
@@ -212,7 +212,7 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A normal member that takes one char argument and return boolean
-	 * @param a char of the Predator's DNA
+	 * @param DNA_predator is char of the Predator's DNA
 	 * @return a boolean that is true if the DNA is in the predator table and false if either.
 	 */
 	public boolean isPredator(char DNA_predator){
@@ -230,8 +230,8 @@ public abstract class MakhlukHidup {
 	
 	/**
 	 * A normal member that takes two argument and return boolean
-	 * @param an integer, the radius of circle
-	 * @param a Point of another organism
+	 * @param rad is integer, the radius of circle
+	 * @param p is Point of another organism
 	 * @return a boolean that is true if the coordinate of another organism is in the radius
 	 * area of this organism Position and false if either
 	 */

@@ -75,7 +75,7 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 
     /**
 	 * A setter for tingkat_kekenyangan
-	 * @param an integer arguments that will be assigned to tingkat_kekenyangan
+	 * @param kenyang integer arguments that will be assigned to tingkat_kekenyangan
 	 */
     public void set_tingkat_kekenyangan(int kenyang){
 		tingkat_kekenyangan = kenyang;
@@ -87,7 +87,7 @@ public abstract class Hewan extends MakhlukHidup implements DirectionSetter {
 	
     /**
 	 * A setter for maks_tingkat_kekenyangan
-	 * @param an integer arguments that will be assigned to maks_tingkat_kekenyangan
+	 * @param maks integer arguments that will be assigned to maks_tingkat_kekenyangan
 	 */
     public void set_maks_tingkat_kekenyangan(int maks){
 		maks_tingkat_kekenyangan = maks;

@@ -36,14 +36,14 @@ public class Karnivora extends Hewan {
 
 	/**
 	 * A setter for slowed status
-	 * @param a boolean arguments that will be assigned to true if the carnivore want to be slowed
+	 * @param lambat is boolean arguments that will be assigned to true if the carnivore want to be slowed
 	 */
 	public void setMelambat( boolean lambat){
 		melambat = lambat;
 	}
 	/**
 	 * A setter for the carnivore acceleration
-	 * @param an integer arguments that will be assigned to true if the carnivore want to be slowed
+	 * @param delta is integer arguments that will be assigned to true if the carnivore want to be slowed
 	 */
 	public void setDeltaKecepatan(int delta){
 		deltaKecepatan = delta;
@@ -88,7 +88,7 @@ public class Karnivora extends Hewan {
 	/**
 	*  A normal member procedure that take 1 arguments
 	*  A procedure that makes carnivore react to an organism input
-	*  @param an organism
+	*  @param M is organism
 	*/
 	public void Reaction(MakhlukHidup M){
 		prosesMelambat();

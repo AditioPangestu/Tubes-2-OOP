@@ -30,7 +30,7 @@ public class Omnivora extends Hewan {
 	
 	/**
 	 * A function to check whether the organism is plant or not
-	 * @param a MakhlukHidup
+	 * @param M is MakhlukHidup
 	 * @return a boolean
 	 */
 	public boolean isTumbuhan(MakhlukHidup M){
@@ -44,7 +44,7 @@ public class Omnivora extends Hewan {
 	
 	/**
 	 * A procedure that make the omnivore react to the other MakhlukHidup
-	 * @param MakhlukHidup
+	 * @param M is MakhlukHidup
 	 */
 	public void Reaction(MakhlukHidup M){
 		if (M.getPosisi()== getPosisi()){

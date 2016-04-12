@@ -12,7 +12,7 @@ package makhluk2;
 public class Polisi extends Manusia{
     /**
     *  	ctor that take one argument to set the position of the Polisi
-    * 	@param A Point
+    * 	@param P is a Point, first position of Polisi class
     */
     public Polisi(Point P){
         super();
@@ -37,8 +37,7 @@ public class Polisi extends Manusia{
     }
     /**
     * A procedure that make the Polisi react to the other MakhlukHidup
-     * @param M
-    * @param MakhlukHidup
+     * @param M is an MakhlukHidup
     */
     @Override
     public void Reaction(MakhlukHidup M){

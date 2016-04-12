@@ -16,7 +16,7 @@ public class Point {
 		}
 		/**
 		 * A ctor that construct A Point with a random cordinate that range from 0 to range
-		 * @param an integer, a range to random
+		 * @param range is an integer, a range to random
 		 */
 		public Point(int range){
 			Random rand = new Random();
@@ -28,8 +28,8 @@ public class Point {
 		
 		/**
 		 * A ctor that construct A Point with absis = _x and ordinate = _y
-		 * @param an integer for the absis
-		 * @param an integer for the ordinate
+		 * @param _x is an integer for the absis
+		 * @param _y is an integer for the ordinate
 		 */
 		public Point(int _x, int _y){
 			x = _x;
@@ -38,8 +38,8 @@ public class Point {
 	
 		/**
 		 * A member procedure to make a point move tc x+dx and y+dy
-		 * @param an integer for dx
-		 * @param an integer for dy
+		 * @param dx integer for dx
+		 * @param dy integer for dy
 		 */
 		public void geser(int dx, int dy){
 			x += dx; y += dy;
@@ -63,7 +63,7 @@ public class Point {
 
 		/**
 		 * Set the absis
-		 * @param an integer
+		 * @param _x is integer of new abscissa
 		 */
 		public void setAbsis(int _x){
 			x = _x;
@@ -71,7 +71,7 @@ public class Point {
 		
 		/**
 		 * Set the ordinate
-		 * @param an integer
+		 * @param _y integer of new ordinate
 		 */
 		public void setOrdinat(int _y){
 			y = _y;

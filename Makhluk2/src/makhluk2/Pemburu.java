@@ -12,7 +12,7 @@ package makhluk2;
 public class Pemburu extends Manusia{
     /**
     *  	ctor that take one argument to set the position of the Pemburu
-    * 	@param A Point
+    * 	@param P is a Point, represent the first position of Pemburu in world
     */
     public Pemburu(Point P){
         super();
@@ -36,7 +36,7 @@ public class Pemburu extends Manusia{
     
     /**
     * A procedure that make the pemburu react to the other MakhlukHidup
-    * @param MakhlukHidup
+    * @param M is a MakhlukHidup
     */
     @Override
     public void Reaction(MakhlukHidup M){
